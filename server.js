@@ -1,34 +1,36 @@
-const express = require("express")
+const express = require('express');
 const app = express();
-const server = require("http").Server(app);
-const io = require("socket.io")(server);
-const port = 3000;
+const path = require('path');
+const server = require('http').Server(app);
+const io = require('socket.io')(server);
 
+app.use('/', express.static(path.join(__dirname, 'www')));
 
-/*app.use("/", express.static(path.join(__dirname,"www")));
+let clientSocket;
 
-app.listen(port, function (){
-    console.log("Servidor en ejecución en puerto ${port}");
-})
+io.on('connection', (socket) => {
+  console.log(`socket connected ${socket.id}`);
 
-app.get("/api/data/get", (req,res) => {
-    const arr = [1,2,3,4];
-    res.end(JSON.stringify(arr));
-})
+  socket.on("POINTER_CONNECTED", () => {
+    socket.emit("ACK_CONNECTION");
+    if (clientSocket) clientSocket.emit("NEW_POINTER", { pointerId: socket.id });
+  });
 
-// Ejemplo de mandar parámetros por la ruta
-app.get("/user/:id",function (req,res) {
-    res.send("user: "+req.params.id);
-})
-*/
-app.use(express.static('www'));
+  socket.on("SENSOR_READING", (data) => {
+    //console.log(data);
+    if (clientSocket) clientSocket.emit("SENSOR_READING", {
+      pointerId: socket.id,
+      coords: data
+    });
+  });
 
-server.listen(3000, () => console.log('server started'));
+  socket.on("CLIENT_CONNECTED", () => {
+    clientSocket = socket;
+    clientSocket.emit("ACK_CONNECTION");
+  })
+});
 
-io.on("connection",function(socket) {
-    console.log("nuevo cliente");
-    socket.on("mes",function(mes){
-        console.log("Mensaje de cliente: "+mes.msg);
-        socket.emit("mes", "adios");
-    })
-})
+server.listen(3000, () => {
+  console.log("Server listening...");
+});
+
