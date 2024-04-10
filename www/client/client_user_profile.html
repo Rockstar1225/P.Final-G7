@@ -29,27 +29,34 @@
                 <button class="h_icons"><img src="imgs/profile_icon.webp" alt="profile" width="50" height="50"></button>
             </div>
         </header>
+        <h1 class="set_Title">AJUSTES</h1>
         <div id="settings">
-            <h1>AJUSTES</h1>
             <div class="menu_entrance">
                 <p>Perfil</p>
                 <button class="open" id="user_open">></button>
-                <div id="user_settings">
-                    <h2>Datos actuales</h2>
-                    <p id="saved_name">Nombre:</p>
-                    <p id="saved_dir">Dirección:</p>
-                    <h2>Cambiar datos</h2>
-                    <p>Nombre: <input id="newName"></p>
-                    <p>Dirección: <input id="newDir"></p>
-                    <p>Contraseña: <input id="newCont1"></p>
-                    <p>Repita contraseña: <input id="newCont2"></p>
-                    <button id="User_setBut">Aceptar</button>
-                </div>
+            </div>
+            <div id="user_settings">
+                <h2>Datos actuales</h2>
+                <p id="saved_name">Nombre:</p>
+                <p id="saved_dir">Dirección:</p>
+                <h2>Cambiar datos</h2>
+                <p>Nombre: <input id="newName"></p>
+                <p>Dirección: <input id="newDir"></p>
+                <p>Contraseña: <input id="newCont1"></p>
+                <p>Repita contraseña: <input id="newCont2"></p>
+                <button id="user_setBut">Aceptar</button>
             </div>
             <div class="menu_entrance">
                 <p>Notificaciones</p>
                 <button class="open" id="not_open">></button>
             </div>
+            <form id="not_settings">
+                <label>Tipo de notificacion:</label>
+                    <select id="sound" name="sound">
+                      <option value="with_sound">Con sonido</option>
+                      <option value="only_vibr">Solo vibración</option>
+                    </select>
+            </form>
             <div class="menu_entrance">
                 <p>Ayuda</p>
                 <button class="open" id="help_open">></button>

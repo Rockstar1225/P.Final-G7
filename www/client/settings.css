@@ -1,7 +1,47 @@
-#settings{
-    border: 2px solid black;
+.set_Title{
+    text-align: center;
+    margin-top: 2%;
 }
 
-#settings > h1, h2{
-    text-align: center;
+#settings{
+    border: 2px solid black;
+    background-color: #7CC3B6;
+    margin-top: 2%;
+    margin-left: 20%;
+    margin-right: 20%;
 }
+
+#user_settings{
+    text-align: center;
+    padding: 2px;
+}
+
+#user_setBut{
+    padding: 2px;
+    margin: 1%;
+    font-weight: 400;
+    color: white;
+    background-color: #31BE3F;
+    border: 1px solid white;
+}
+
+.menu_entrance{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: large;
+    border: 1px solid black;
+    padding: 2px;
+}
+ .open{
+    margin-left: auto;
+    font-size: large;
+    padding: 2px;
+    background-color: #7CC3B6;
+ }
+
+ #not_settings{
+    text-align: center;
+    padding: 3px;
+
+ }

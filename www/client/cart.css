@@ -1,0 +1,27 @@
+.Title{
+    text-align: center;
+    margin-top: 2px;
+}
+
+#list{
+    background-color: #7CC3B6;
+    border: 2px solid black;
+    text-align: center;
+    margin-left: 20%;
+    margin-right: 20%;
+    padding: 3px;
+}
+
+#accept_purch{
+    padding: 2px;
+    margin: 1%;
+    font-weight: 400;
+    color: white;
+    background-color: #31BE3F;
+    border: 1px solid white;
+}
+
+#price, #accept_purch{
+    font-size: large;
+}
+

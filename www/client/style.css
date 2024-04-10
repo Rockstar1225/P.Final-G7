@@ -5,6 +5,7 @@
 
 body{
     background-color: #F94B4B;
+    height: fit-content;
 }
 footer {
   position: fixed;
@@ -14,6 +15,7 @@ footer {
   background-color: #31BE3F;
   border: solid black 2px;
   margin: 0 2.5%;
+  margin-top: 20px;
 }
 .footer_grid {
     display: flex;
@@ -53,7 +55,9 @@ footer {
     
     /* Header section for mobiles */
     #head_mobile {
-        margin: 15%;
+        margin-left: 15%;
+        margin-right: 15%;
+        margin-top: 5%;
         background-color: #31BE3F;
         padding: 10px; 
         text-align: center;
