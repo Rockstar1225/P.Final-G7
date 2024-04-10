@@ -3,10 +3,10 @@
       <script type="text/javascript"src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
         <script type="text/javascript" src="/socket.io/socket.io.js"></script>
         <link rel="stylesheet" href="./client/style.css">
-
+        <link rel="stylesheet" href="./index.css">
     </head>
     <body>     
-        
+        <!--Header para móvil -->
         <header id="head_mobile">
             <h1 class="Title">Sportify</h1>
             <div class="images">
@@ -16,6 +16,7 @@
             </div>
 
         </header>
+        <!-- Header para tablets y PC-->
         <header id="head_tablet">
             <div class="images">
                 <img src="./client/imgs/futbol.avif" alt="futbol" width="50" height="50">
@@ -32,6 +33,23 @@
             </div>
         </header>
         
+        <!-- Componente de categorías -->
+        <div id="categories" >
+          <h2 class="cat_list_title">Categorías</h2>
+          <div class="list_cat">
+            <div id="cat1" class="cat">
+              <h3 class="c_title">Categoría 1</h3>
+            </div>
+            <div id="cat2" class="cat">
+              <h3 class="c_title">Categoría 2</h3>
+            </div>
+            <div id="cat3" class="cat">
+              <h3 class="c_title">Categoría 3</h3>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer compartido de las páginas-->
         <footer>
         <div class="footer_grid">
             <button class="footer_icons" aria-label="options"><img src="./client/imgs/three_bars.webp" alt="options"></button>
@@ -40,7 +58,7 @@
             <button class="footer_icons" aria-label="profile"><img src="./client/imgs/profile_icon.webp" alt="profile"></button>
             <button class="footer_icons" aria-label="voice commands"><img src="./client/imgs/speaking_icon.webp" alt="voice commands"></button>
         </div>
-    </footer>
+        </footer>
         <script type="text/javascript" src="index.js"></script>
     </body>
 </html>
