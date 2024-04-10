@@ -1,18 +1,15 @@
 body{
     background-color: #F94B4B;
 }
-
-#log_button{
-    margin-top: 1%;
-    padding: 1%;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: 900;
-    font-size: 16;
-    border: 2px solid white;
-    background-color: #AF2092;
-    color: white;
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 10px;
+  width: 95%;
+  background-color: #31BE3F;
+  border: solid black 2px;
+  margin: 0 2.5%;
 }
-
 .footer_grid {
     display: flex;
     justify-content: space-between; /* Spread the items evenly */
