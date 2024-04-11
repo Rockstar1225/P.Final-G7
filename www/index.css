@@ -12,13 +12,18 @@ body{
   height: 40vh;
 }
 
+.cat{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
   .cat_list_title {
     flex: 1 6 auto;
     display: flex;
     align-items: center;
     text-align: center;
     width: 100%;
-    margin: 00;
     background-color: #6CDDC9;
   }
 
@@ -29,11 +34,17 @@ body{
   }
 
     .list_cat > .cat {
-
+      padding: 2px;
     }
       .cat > .c_title {
+        font-weight: 900;
 
       }
       .cat > img {
+        padding: 1px;
 
       }
+  
+  b {
+    font-size: x-large;
+  }
