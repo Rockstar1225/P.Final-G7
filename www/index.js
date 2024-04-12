@@ -1,15 +1,23 @@
 const socket = io();
 
 //-----SECCIÓN BÚSQUEDA-MENÚS---------------
-let sesion = 0;
+let sesion = 1;
 function logged(){
-    alert(sesion);
     if (sesion == 0){
           window.location.href = "./client/client_login.html";
         }
         else{
           window.location.href = "./client/client_user_profile.html";
         }
+}
+
+function chart_in(){
+  if (sesion == 0){
+    window.location.href = "./client/client_login.html";
+  }
+  else{
+    window.location.href = "./client/client_carrito.html";
+  }
 }
 
 

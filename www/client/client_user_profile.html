@@ -22,11 +22,11 @@
             </div>
             <h1 class="Title">Sportify</h1>
             <div class="funcionalidades">
-                <button class="h_icons"><img src="imgs/three_bars.webp" alt="options" width="50" height="50"></button>
-                <button class="h_icons"><img src="imgs/shopping_cart.webp" alt="shopping cart" width="50" height="50"></button>
+                <a href="../index.html"><button class="h_icons"><img src="imgs/three_bars.webp" alt="options" width="50" height="50"></button></a>
+                <button class="h_icons" onclick="chart_in()"><img src="./imgs/shopping_cart.webp" alt="shopping cart" width="50" height="50"></button>
                 <button class="h_icons" id="voice_commands"><img src="./imgs/speaking_icon.webp" alt="voice commands" width="50" height="50"></button>
                 <button class="h_icons"><img src="imgs/question_icon.jpg" alt="help" width="50" height="50"></button>
-                <button class="h_icons"><img src="imgs/profile_icon.webp" alt="profile" width="50" height="50"></button>
+                <button class="h_icons" onclick="logged()"><img src="imgs/profile_icon.webp" alt="profile" width="50" height="50"></button>
             </div>
         </header>
         <h1 class="set_Title">AJUSTES</h1>
@@ -58,6 +58,14 @@
                     </select>
             </form>
             <div class="menu_entrance">
+                <p>Favoritos</p>
+                <button class="open" id="fav_open" onclick="settingsCat('fav_open')">></button>
+            </div>
+            <div id="fav_settings">
+                <h2>Lista de favoritos</h2>
+                <section id="fav_list"></section>
+            </div>
+            <div class="menu_entrance">
                 <p>Ayuda</p>
                 <button class="open" id="help_open">></button>
             </div>
@@ -74,11 +82,11 @@
 
     <footer>
         <div class="footer_grid">
-            <button class="footer_icons" aria-label="options"><img src="imgs/three_bars.webp" alt="options"></button>
-            <button class="footer_icons" aria-label="shopping cart"><img src="imgs/shopping_cart.webp" alt="shopping cart"></button>
-            <button class="footer_icons" aria-label="help"><img src="imgs/question_icon.jpg" alt="help"></button>
-            <button class="footer_icons" aria-label="profile"><img src="imgs/profile_icon.webp" alt="profile"></button>
-            <button class="footer_icons" aria-label="voice commands"><img src="imgs/speaking_icon.webp" alt="voice commands"></button>
+            <a href="../index.html"><button class="footer_icons" aria-label="options"><img src="./client/imgs/three_bars.webp" alt="options"></button></a>
+            <button class="footer_icons" aria-label="shopping cart" onclick="chart_in()"><img src="./imgs/shopping_cart.webp" alt="shopping cart"></button>
+            <button class="footer_icons" aria-label="help"><img src="./client/imgs/question_icon.jpg" alt="help"></button>
+            <button class="footer_icons" aria-label="profile" onclick="logged()"><img src="./client/imgs/profile_icon.webp" alt="profile"></button>
+            <button class="footer_icons" aria-label="voice commands"><img src="./client/imgs/speaking_icon.webp" alt="voice commands"></button>
         </div>
     </footer>
 </html>
