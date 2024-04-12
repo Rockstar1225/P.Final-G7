@@ -45,7 +45,10 @@ body{
       }
       .cat > img {
         padding: 1px;
-
+        border: solid black 3px;
+        border-radius: 50%;
+        background-color: orange;
+        padding: 5px;
       }
   
   b {
