@@ -36,18 +36,21 @@ function randomPhrase() {
 function testSpeech() {
     testBtn.disabled = true;
     
-    if (window.location.href == "http://localhost:3000/"){
-        var categories = document.querySelectorAll(".c_title");
+    if (window.location.href === "http://localhost:3000/"){
+        let categories = document.querySelectorAll(".c_title");
         categories.forEach(element =>{
-            var str = 'ir a ';
+            let str = 'ir a ';
             str = str.concat(element.innerHTML.toLowerCase())
             phrases.push(str)
 
         })
         console.log(phrases);
     }
-    
-
+    let in_login_html = false;
+    if (window.location.href === "http://localhost:3000/client/client_login.html"){
+        in_login_html = true;
+    }
+        
     
     // To ensure case consistency while checking with the returned output text
     // phrase = phrase.toLowerCase();
@@ -76,11 +79,12 @@ function testSpeech() {
         // These also have getters so they can be accessed like arrays.
         // The second [0] returns the SpeechRecognitionAlternative at position 0.
         // We then return the transcript property of the SpeechRecognitionAlternative object 
-        var speechResult = event.results[0][0].transcript.toLowerCase();
+        let speechResult = event.results[0][0].transcript.toLowerCase();
         // diagnosticPara.textContent = 'Speech received: ' + speechResult + '.';
         if (phrases.includes(speechResult)) {
             // resultPara.textContent = 'I heard the correct phrase!';
             // resultPara.style.background = 'lime';
+            // comandos con gramatica
             let index = phrases.indexOf(speechResult)
             if (index >= 7){
                 window.location.href = `${redirects[0]}`;
@@ -88,9 +92,19 @@ function testSpeech() {
             else{
             window.location.href = `${redirects[index]}`;
             }
-        // } else {
-            // resultPara.textContent = 'That didn\'t sound right.';
-            // resultPara.style.background = 'red';
+        } else {
+            // comandos sin gramatica
+            if (speechResult.includes("usuario") && in_login_html === true){
+                let user_str = speechResult.replace("usuario", "");
+                let username_object = document.querySelector("#init_user");
+                username_object.value = user_str;
+            }
+            if (speechResult.includes("contraseña") && in_login_html === true) {
+                let user_str = speechResult.replace("contraseña", "");
+                let username_object = document.querySelector("#init_password");
+                username_object.value = user_str;
+            }
+
         }
         console.log('Confidence: ' + event.results[0][0].confidence);
     }
