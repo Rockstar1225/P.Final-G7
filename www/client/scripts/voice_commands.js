@@ -13,13 +13,13 @@ var phrases = [
 ];
 
 var redirects = [
-    'client_busqueda.html',
-    'client_carrito.html',
-    'client_categorias.html',
-    'client_login.html',
-    'client_product.html',
-    'client_user_profile.html',
-    'index.html'
+    '/client/client_busqueda.html',
+    '/client/client_carrito.html',
+    '/client/client_categorias.html',
+    '/client/client_login.html',
+    '/client/client_product.html',
+    '/client/client_user_profile.html',
+    '/'
 ];
 
 // var phrasePara = document.querySelector('.phrase');
@@ -35,6 +35,17 @@ function randomPhrase() {
 
 function testSpeech() {
     testBtn.disabled = true;
+    
+    if (window.location.href == "http://localhost:3000/"){
+        var categories = document.querySelectorAll(".c_title");
+        categories.forEach(element =>{
+            var str = 'ir a ';
+            str = str.concat(element.innerHTML.toLowerCase())
+            phrases.push(str)
+
+        })
+        console.log(phrases);
+    }
     
 
     
@@ -71,14 +82,13 @@ function testSpeech() {
             // resultPara.textContent = 'I heard the correct phrase!';
             // resultPara.style.background = 'lime';
             let index = phrases.indexOf(speechResult)
-            if (redirects[index] == 'index.html'){
-                window.location.href = `/`;
+            if (index >= 7){
+                window.location.href = `${redirects[0]}`;
             }
             else{
-                window.location.href = `/client/${redirects[index]}`;
+            window.location.href = `${redirects[index]}`;
             }
-            
-        } else {
+        // } else {
             // resultPara.textContent = 'That didn\'t sound right.';
             // resultPara.style.background = 'red';
         }
