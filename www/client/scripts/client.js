@@ -3,7 +3,6 @@ const socket = io();
 //-----SECCIÓN BÚSQUEDA-MENÚS---------------
 let sesion = 0;
 function logged(principal){
-    alert(sesion);
     if (sesion == 0){
           if (principal){
             window.location.href = "./client/client_login.html";
@@ -21,7 +20,7 @@ function logged(principal){
 }
 
 function chart_in(principal){
-    
+  alert(sesion);
     if (sesion == 0){
           if (principal){
             window.location.href = "./client/client_login.html";
@@ -39,12 +38,14 @@ function chart_in(principal){
 
 
 //-----SECCIÓN AJUSTES DE USUARIO------------
-document.getElementById("user_settings").style.display = "none";
-document.getElementById("user_open").style.transform = "none";
-document.getElementById("not_settings").style.display = "none";
-document.getElementById("not_open").style.transform = "none";
-document.getElementById("fav_settings").style.display = "none";
-document.getElementById("fav_open").style.transform = "none";
+function init_settings(){
+  document.getElementById("user_settings").style.display = "none";
+  document.getElementById("user_open").style.transform = "none";
+  document.getElementById("not_settings").style.display = "none";
+  document.getElementById("not_open").style.transform = "none";
+  document.getElementById("fav_settings").style.display = "none";
+  document.getElementById("fav_open").style.transform = "none";
+}
 
 
 function settingsCat(id){
