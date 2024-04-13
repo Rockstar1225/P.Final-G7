@@ -4,7 +4,7 @@ class database {
 
   database = {
     "productos": [
-      {"name":"Gorro", "cantidad":2, "deporte": "swim", "price":10.3}
+      {"name":"Gorro", "cantidad":2, "deporte": "swim", "price":10.3, "desc": "Gorro de goma perfecto para natación."}
     ]
   };
   
@@ -36,8 +36,8 @@ class database {
   // cantidad: cantidad de productos en el almacén
   // dep: el deporte/categoría de cada producto
   // price: el precio de cada producto 
-  addProd(nombre, cantidad, dep, price) {
-    this.database.productos.push({"name": nombre, "cantidad": cantidad, "deporte": dep, "price": price});
+  addProd(nombre, cantidad, dep, price,desc) {
+    this.database.productos.push({"name": nombre, "cantidad": cantidad, "deporte": dep, "price": price, "desc": desc});
     saveData(); 
   }
 
