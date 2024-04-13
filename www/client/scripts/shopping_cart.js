@@ -54,4 +54,4 @@ class shopping_cart {
   }
 }
 
-const shopping_cart = shopping_cart();
+const cart = new shopping_cart();
