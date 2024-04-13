@@ -1,9 +1,8 @@
 <html>
     <head>
-      <script type="text/javascript"src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-        <script type="text/javascript" src="/socket.io/socket.io.js"></script>
-        <link rel="stylesheet" href="./client/styles/style.css">
-        <link rel="stylesheet" href="./index.css">
+      <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+      <link rel="stylesheet" href="./client/styles/style.css">
+      <link rel="stylesheet" href="./index.css">
     </head>
     <body>     
         <!--Header para móvil -->
@@ -26,10 +25,10 @@
             <h1 class="Title">Sportify</h1>
             <div class="funcionalidades">
                 <button class="h_icons"><img src="./client/imgs/three_bars.webp" alt="options" width="50" height="50"></button>
-                <button class="h_icons" onclick="chart_in()"><img src="./client/imgs/shopping_cart.webp" alt="shopping cart" width="50" height="50"></button>
+                <button class="h_icons" onclick="chart_in(true)"><img src="./client/imgs/shopping_cart.webp" alt="shopping cart" width="50" height="50"></button>
                 <button class="h_icons" id="voice_commands"><img src="./client/imgs/speaking_icon.webp" alt="voice commands" width="50" height="50"></button>
                 <button class="h_icons"><img src="./client/imgs/question_icon.jpg" alt="help" width="50" height="50"></button>
-                <button class="h_icons" onclick="logged()"><img src="./client/imgs/profile_icon.webp" alt="profile" width="50" height="50"></button>
+                <button class="h_icons" onclick="logged(true)"><img src="./client/imgs/profile_icon.webp" alt="profile" width="50" height="50"></button>
             </div>
         </header>
         
@@ -79,12 +78,15 @@
         <footer>
         <div class="footer_grid">
             <button class="footer_icons" aria-label="options"><img src="./client/imgs/three_bars.webp" alt="options"></button>
-            <button class="footer_icons" aria-label="shopping cart" onclick="chart_in()"><img src="./client/imgs/shopping_cart.webp" alt="shopping cart"></button>
+            <button class="footer_icons" aria-label="shopping cart" onclick="chart_in(true)"><img src="./client/imgs/shopping_cart.webp" alt="shopping cart"></button>
             <button class="footer_icons" aria-label="help"><img src="./client/imgs/question_icon.jpg" alt="help"></button>
-            <button class="footer_icons" aria-label="profile" onclick="logged()"><img src="./client/imgs/profile_icon.webp" alt="profile"></button>
+            <button class="footer_icons" aria-label="profile" onclick="logged(true)"><img src="./client/imgs/profile_icon.webp" alt="profile"></button>
             <button class="footer_icons" aria-label="voice commands"><img src="./client/imgs/speaking_icon.webp" alt="voice commands"></button>
         </div>
         </footer>
+        
+        <script type="text/javascript" src="./client/scripts/client.js"></script>
+        <script type="text/javascript" src="./store.js"></script>
         <script type="text/javascript" src="index.js"></script>
         <script type="text/javascript" src="./client/scripts/voice_commands.js"></script>
     </body>

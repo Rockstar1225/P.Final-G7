@@ -2,23 +2,39 @@ const socket = io();
 
 //-----SECCIÓN BÚSQUEDA-MENÚS---------------
 let sesion = 1;
-function logged(){
+function logged(principal){
     alert(sesion);
     if (sesion == 0){
+          if (principal){
+            window.location.href = "./client/client_login.html";
+          } else {
+            window.location.href = "./client_login.html"; 
+          }
+    } else{
+        if (principal){
+          window.location.href = "./client/client_user_profile.html";
+        } else {
           window.location.href = "./client_login.html";
         }
-        else{
-          window.location.href = "./client_user_profile.html";
-        }
+
+    }
 }
 
-function chart_in(){
+function chart_in(principal){
+    
     if (sesion == 0){
-      window.location.href = "./client_login.html";
-    }
-    else{
-      window.location.href = "./client_carrito.html";
-    }
+          if (principal){
+            window.location.href = "./client/client_login.html";
+          } else {
+            window.location.href = "./client_login.html"; 
+          }
+    } else{
+        if (principal){
+          window.location.href = "./client/client_carrito.html";
+        } else {
+          window.location.href = "./client_carrito.html";
+        }
+    } 
   }
 
 
