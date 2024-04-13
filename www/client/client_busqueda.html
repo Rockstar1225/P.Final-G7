@@ -2,7 +2,7 @@
     <head>
         <script type="text/javascript" src="/socket.io/socket.io.js"></script>
         <link rel='stylesheet' href='styles/style.css'>
-        <link rel='stylesheet' href='styles/settings.css'>
+        <link rel='stylesheet' href='styles/search.css'>
     </head>
     <body>
         <header id="head_mobile">
@@ -29,7 +29,23 @@
                 <button class="h_icons" onclick="logged(false)"><img src="imgs/profile_icon.webp" alt="profile" width="50" height="50"></button>
             </div>
         </header>
-
+        <div id="manual">
+            <h2>Búsqueda manual</h2>
+            <div><input id="search_p"><img src="./imgs/lupa.png" alt="lupa" width="25" height="25"></div>
+        </div>
+        <div id="filt">
+            <h2>Filtros</h2>
+            <p id="price_range">Rango de precios: <input id="min_p"> a <input id="max_p"></p>
+            <p id="fab_ft"> Opción favoritos: <select id="sel_fab" name="sel_fab">
+                <option value="mixed_fab">Favoritos y no favoritos</option>
+                <option value="only_fab">Sólo favoritos</option>
+                <option value="not_fab">Sin favoritos</option></select></p>
+            <p id="p_order">Orden productos:<select id="s_order" name="s_order">
+                <option value="alpha_up">Ascendente (A->Z)</option>
+                <option value="alpha_down">Descendente (Z->A)</option>
+                <option value="p_up">Precio (Menor a mayor)</option>
+                <option value="p_down">Precio (Mayor a menor)</option></select></p>
+        </div>
 
         
         <script type="text/javascript" src="./scripts/client.js"></script>

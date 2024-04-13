@@ -14,7 +14,7 @@ function logged(principal){
         if (principal){
           window.location.href = "./client/client_user_profile.html";
         } else {
-          window.location.href = "./client_login.html";
+          window.location.href = "./client_user_profile.html";
         }
 
     }

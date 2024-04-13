@@ -1,0 +1,29 @@
+#manual{
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 2px;
+    background-color: 7CC3B6;
+    border: 2px solid black;
+    border-radius: 20px;
+    margin-left: 9%;
+    margin-right: 9%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+#search_p{
+    width: 90%;
+    font-size: large;
+    padding: 2px;
+    
+}
+
+
+ #filt > h2{
+    color: white;
+    background-color: AF2092;
+    border: 2px solid white;
+    padding: 3px;
+    margin-left: 40%;
+    margin-right: 40%;
+ }
