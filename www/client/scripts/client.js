@@ -1,7 +1,7 @@
 const socket = io();
 
 //-----SECCIÓN BÚSQUEDA-MENÚS---------------
-let sesion = 1;
+let sesion = 0;
 function logged(principal){
     alert(sesion);
     if (sesion == 0){

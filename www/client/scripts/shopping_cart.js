@@ -7,6 +7,8 @@ class shopping_cart {
     "cart": []
   };
   
+  constructor(){}
+
   // Añadir un nuevo producto al carrito
   // nombre: el nombre del objeto.
   addProd(nombre) { 
@@ -54,4 +56,4 @@ class shopping_cart {
   }
 }
 
-const shopping_cart = shopping_cart();
+let cart = null;

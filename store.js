@@ -1,3 +1,5 @@
+const fs = require("fs");
+
 class database {
   // Datos iniciales
   ruta = "";
@@ -9,8 +11,8 @@ class database {
   };
   
   constructor(rute){
-    this.ruta = rute;
-    if (localStorage.getItem(this.ruta)){
+    this.ruta = rute; 
+    if (fs.existsSync(this.ruta)){
       this.loadData();
     } else {
       this.saveData(); 
@@ -22,12 +24,12 @@ class database {
   saveData() {
     let json = JSON.stringify(this.database);
     // Guardar en el almacenamiento local del navegador
-    localStorage.setItem(this.ruta, json);
+    fs.writeFileSync(this.ruta,json);
   }
 
   // Recuperar la base de datos desde el archivo JSON
   loadData() {
-    let json = localStorage.getItem(this.ruta); 
+    let json = fs.readFileSync(this.ruta); 
     this.database = JSON.parse(json);
   }  
   
@@ -73,3 +75,4 @@ class database {
   }
 }
 
+exports.store = new database("./store.json");
