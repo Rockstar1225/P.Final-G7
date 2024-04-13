@@ -1,10 +1,11 @@
 <html>
     <head>
-      <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+      <script type="text/javascript" src="/socket.io/socket.io.js"></script> 
+      <script type="text/javascript" src="./client/scripts/client.js"></script>
       <link rel="stylesheet" href="./client/styles/style.css">
       <link rel="stylesheet" href="./index.css">
     </head>
-    <body>     
+    <body onload="cart = new shopping_cart();">     
         <!--Header para móvil -->
         <header id="head_mobile">
             <h1 class="Title">Sportify</h1>
@@ -88,6 +89,7 @@
         <script type="text/javascript" src="./store.js"></script>
         <script type="text/javascript" src="index.js"></script>
         <script type="text/javascript" src="./client/scripts/client.js"></script>
+        
         <script type="text/javascript" src="./client/scripts/voice_commands.js"></script>
     </body>
 </html>

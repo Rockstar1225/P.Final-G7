@@ -21,7 +21,7 @@ io.on('connection', (socket) => {
 
   })
 
-  //-----------Eventos de cliente-------------
+  //-----------Eventos de base de datos-------------
 
   // evento para pedir productos al servidor de un
   // determinado deporte.
@@ -30,8 +30,7 @@ io.on('connection', (socket) => {
   });
 
   // evento para pedir un producto de la base de datos con su nombre
-  socket.on("getProd", function(name){
-    console.log("enviando respuesta desde el server...");
+  socket.on("getProd", function(name){ 
     let prod = products.store.locateProd(name);
     socket.emit("retProd",prod);
   });
