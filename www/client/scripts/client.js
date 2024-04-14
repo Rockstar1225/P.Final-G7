@@ -1,7 +1,9 @@
 const socket = io();
+let sesion;
+let global_user = "";
+window.onload = checkUser();
 
 //-----SECCIÓN BÚSQUEDA-MENÚS---------------
-let sesion = 0;
 function logged(principal){
     if (sesion == 0){
           if (principal){
@@ -35,6 +37,24 @@ function chart_in(principal){
         }
     } 
   }
+
+
+//-----SECCIÓN INICIO DE SESIÓN-----------------------------------
+
+function setUser(){
+    let user = document.querySelector("#init_user").value; 
+    global_user = user;   
+    sesion = 1;
+}
+
+function checkUser(){
+  if (global_user != ""){
+    sesion = 1;
+  }
+  else{
+    sesion = 0;
+  }
+}
 
 
 //-----SECCIÓN AJUSTES DE USUARIO/ FILTROS DE BÚSQUEDA------------
