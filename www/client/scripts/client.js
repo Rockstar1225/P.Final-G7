@@ -37,7 +37,7 @@ function chart_in(principal){
   }
 
 
-//-----SECCIÓN AJUSTES DE USUARIO------------
+//-----SECCIÓN AJUSTES DE USUARIO/ FILTROS DE BÚSQUEDA------------
 function init_settings(){
   document.getElementById("user_settings").style.display = "none";
   document.getElementById("user_open").style.transform = "none";
@@ -45,6 +45,11 @@ function init_settings(){
   document.getElementById("not_open").style.transform = "none";
   document.getElementById("fav_settings").style.display = "none";
   document.getElementById("fav_open").style.transform = "none";
+}
+
+function init_filt(){
+  document.getElementById("filt").style.display = "none";
+  document.getElementById("b_filt").style.transform = "none";
 }
 
 
@@ -59,6 +64,9 @@ function settingsCat(id){
     }
     if (id == "fav_open"){
         submenu = document.getElementById("fav_settings");
+    }
+    if (id== "b_filt"){
+      submenu = document.getElementById("filt");
     }
     let rotation = bot.style.transform;
     if (rotation == "none"){

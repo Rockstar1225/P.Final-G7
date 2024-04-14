@@ -4,7 +4,7 @@
         <link rel='stylesheet' href='styles/style.css'>
         <link rel='stylesheet' href='styles/search.css'>
     </head>
-    <body>
+    <body onload="init_filt()">
         <header id="head_mobile">
             <h1 class="Title">Sportify</h1>
             <div class="images">
@@ -29,12 +29,13 @@
                 <button class="h_icons" onclick="logged(false)"><img src="imgs/profile_icon.webp" alt="profile" width="50" height="50"></button>
             </div>
         </header>
+        <h1>Búsqueda</h1>
         <div id="manual">
-            <h2>Búsqueda manual</h2>
-            <div><input id="search_p"><img src="./imgs/lupa.png" alt="lupa" width="25" height="25"></div>
+            <input id="search_p">
+            <img src="./imgs/lupa.png" alt="lupa" width="14" height="14">
         </div>
+        <div id="filt_command"><b>LISTA DE FILTROS</b><button id="b_filt" onclick="settingsCat('b_filt')">></button></div>
         <div id="filt">
-            <h2>Filtros</h2>
             <p id="price_range">Rango de precios: <input id="min_p"> a <input id="max_p"></p>
             <p id="fab_ft"> Opción favoritos: <select id="sel_fab" name="sel_fab">
                 <option value="mixed_fab">Favoritos y no favoritos</option>
@@ -46,6 +47,12 @@
                 <option value="p_up">Precio (Menor a mayor)</option>
                 <option value="p_down">Precio (Mayor a menor)</option></select></p>
         </div>
+        <div class="result_menu">
+            <h2>Resultados</h2>
+            <div id="result_list">
+            </div>
+        </div>
+
 
         
         <script type="text/javascript" src="./scripts/client.js"></script>
