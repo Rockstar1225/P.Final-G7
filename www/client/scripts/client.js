@@ -58,14 +58,13 @@ function setUser(){
 function checkUser(){
   if (global_user != ""){
     sesion = 1;
-    return false;
+    return true;
   }
   else{
     sesion = 0;
-    return true;
+    return false;
   }
 }
-
 
 //-----SECCIÓN AJUSTES DE USUARIO/ FILTROS DE BÚSQUEDA------------
 function init_settings(){

@@ -1,5 +1,7 @@
 const fs = require('fs');
-const socket = require('io');
+const io = require('socket.io-client');
+
+const socket = io("http://localhost:3000");
 
 class fabourites {
   
