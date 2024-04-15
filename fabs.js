@@ -1,41 +1,39 @@
-const socket = io();
+const fs = require('fs');
+const socket = require('io');
 
 class fabourites {
   
   // Datos iniciales
   ruta = "./fabs/";
+  user = "";
   fabs_data = {
     "fabs": []
   };
-  
-  constructor(user){
-    this.ruta += user + ".json";
-    if (user !== ""){
-      socket.emit("existFile",this.ruta);
-      socket.on("retExistFile",(bool) => {
-        if (bool === false){
-          this.saveData();
-        } else {
-          this.loadData(); 
-        }
-      }) 
-    }
-
+    
+  // Setear un usuario
+  setUser(user){
+    this.user = user;
+    if (fs.existsSync(this.ruta+user+".json") === false){
+        this.saveData();
+    } else {this.loadData();}
+    
   }
 
   // Guardar la base de datos en un archivo JSON
   saveData() {
     let json = JSON.stringify(this.fabs_data);
     // Guardar en el almacenamiento local del navegador
-    socket.emit("writeDataFile",this.ruta,json);
+    fs.writeFileSync(this.ruta+this.user+".json",json,() => {
+        console.log("Datos guardados de usuario: "+this.user);
+    }) 
   }
 
   // Recuperar los favoritos desde el archivo JSON
   loadData() { 
-    socket.emit("loadDataFile",this.ruta);
-    socket.on("retLoadDataFile",(data) => {
-      this.fabs_data = JSON.parse(data);
-    }) 
+    let ruta = this.ruta+this.user+".json";
+    let data = fs.readFileSync(ruta);
+    console.log("datos de usuario "+data);
+    this.fabs_data = JSON.parse(data);
   }
 
   // Añadir un nuevo producto a favoritos
@@ -88,4 +86,4 @@ class fabourites {
   }
 }
 
-let fabs = null;
+exports.fabs_handler = new fabourites();

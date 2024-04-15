@@ -6,7 +6,7 @@ const server = require('http').Server(app);
 const io = require('socket.io')(server);
 
 const products = require("./store");
-
+const fabs = require("./fabs");
 app.use('/', express.static(path.join(__dirname, 'www')));
 app.use('/client', express.static(path.join(__dirname, 'www', 'client')));
 
@@ -14,6 +14,7 @@ let clientSocket;
 
 io.on('connection', (socket) => {
   console.log(`socket connected ${socket.id}`); 
+  let fabs_handler = fabs.fabs_handler;
 
   socket.on("CLIENT_CONNECTED", () => {
     clientSocket = socket;
@@ -52,6 +53,24 @@ io.on('connection', (socket) => {
     socket.emit("retExistFile",fs.existsSync(rute));
   })
 
+  // eventos para los faboritos de cada usuario
+  socket.on("fabSwitchUser",function(user){
+    fabs_handler.setUser(user);
+  })
+
+  socket.on("fabAddProd",function(name){
+    fabs_handler.addProd(name);
+    console.log("Producto añadido en fabs!!");
+  })
+
+  socket.on("fabRemProd",function(name){
+    fabs_handler.remProd(name);
+    console.log("Producto eliminado de fabs!!");
+  })
+  socket.on("fabsGet",function(){
+    socket.emit("retFabsGet",fabs_handler.getFabs());
+    console.log("Faboritos retornados");
+  })
 });
 server.listen(3000, () => {
   console.log("Server listening...");
