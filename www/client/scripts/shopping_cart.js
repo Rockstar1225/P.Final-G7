@@ -1,5 +1,9 @@
 const socket = io();
 
+function init_carrito(){
+  cart = new shopping_cart();
+}
+
 class shopping_cart {
   
   // Datos iniciales

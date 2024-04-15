@@ -48,7 +48,7 @@ footer {
 
 
 /* Breakpoint mobile */
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 800px) {
     #head_tablet{
         display: none;
     }
@@ -86,7 +86,7 @@ footer {
 
     }
 }
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 800px) {
     #head_mobile, footer{
         display: none;
     }
