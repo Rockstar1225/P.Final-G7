@@ -22,21 +22,16 @@ var redirects = [
     '/'
 ];
 
-// var phrasePara = document.querySelector('.phrase');
-// var resultPara = document.querySelector('.result');
-// var diagnosticPara = document.querySelector('.output');
 
-var testBtn = document.querySelector('#voice_commands');
-var testBtn2 = document.querySelector('#footer_voice');
+var activate_button_tablet = document.querySelector('#voice_commands');
+var activate_button_phone = document.querySelector('#footer_voice');
+var tile_content_created = false;
+// for text-to-speeech
+const synth = window.speechSynthesis;
 
-function randomPhrase() {
-    var number = Math.floor(Math.random() * phrases.length);
-    return number;
-}
-
-function testSpeech() {
-    testBtn.disabled = true;
-    testBtn2.disabled = true;
+function testSpeech(button) {
+    button.disabled = true;
+    
     
     if (window.location.href === "http://localhost:3000/"){
         let categories = document.querySelectorAll(".c_title");
@@ -53,13 +48,6 @@ function testSpeech() {
         in_login_html = true;
     }
         
-    
-    // To ensure case consistency while checking with the returned output text
-    // phrase = phrase.toLowerCase();
-    // phrasePara.textContent = phrases;
-    // resultPara.textContent = 'Right or wrong?';
-    // resultPara.style.background = 'rgba(0,0,0,0.2)';
-    // diagnosticPara.textContent = '...diagnostic messages';
 
     var grammar = '#JSGF V1.0; grammar phrase; public <phrase> = ' + phrases.join(' | ') + ';';
     var recognition = new SpeechRecognition();
@@ -73,19 +61,9 @@ function testSpeech() {
     recognition.start();
 
     recognition.onresult = function (event) {
-        // The SpeechRecognitionEvent results property returns a SpeechRecognitionResultList object
-        // The SpeechRecognitionResultList object contains SpeechRecognitionResult objects.
-        // It has a getter so it can be accessed like an array
-        // The first [0] returns the SpeechRecognitionResult at position 0.
-        // Each SpeechRecognitionResult object contains SpeechRecognitionAlternative objects that contain individual results.
-        // These also have getters so they can be accessed like arrays.
-        // The second [0] returns the SpeechRecognitionAlternative at position 0.
-        // We then return the transcript property of the SpeechRecognitionAlternative object 
+
         let speechResult = event.results[0][0].transcript.toLowerCase();
-        // diagnosticPara.textContent = 'Speech received: ' + speechResult + '.';
         if (phrases.includes(speechResult)) {
-            // resultPara.textContent = 'I heard the correct phrase!';
-            // resultPara.style.background = 'lime';
             // comandos con gramatica
             let index = phrases.indexOf(speechResult)
             if (index >= 7){
@@ -113,14 +91,11 @@ function testSpeech() {
 
     recognition.onspeechend = function () {
         recognition.stop();
-        testBtn.disabled = false;
-        testBtn2.disabled = false;
+        button.disabled = false;
     }
 
     recognition.onerror = function (event) {
-        testBtn.disabled = false;
-        testBtn2.disabled = false;
-        diagnosticPara.textContent = 'Error occurred in recognition: ' + event.error;
+        button.disabled = false;
     }
 
     recognition.onaudiostart = function (event) {
@@ -135,6 +110,7 @@ function testSpeech() {
 
     recognition.onend = function (event) {
         //Fired when the speech recognition service has disconnected.
+        button.style.backgroundColor = "#007bff";
         console.log('SpeechRecognition.onend');
     }
 
@@ -158,10 +134,71 @@ function testSpeech() {
         console.log('SpeechRecognition.onspeechstart');
     }
     recognition.onstart = function (event) {
+        button.style.backgroundColor = "#FF1D25";
         //Fired when the speech recognition service has begun listening to incoming audio with intent to recognize grammars associated with the current SpeechRecognition.
         console.log('SpeechRecognition.onstart');
     }
 }
+function toggle_options(button) {
+    
+    // speech function
+    function speak(){
+        // instructions
+        let message = new SpeechSynthesisUtterance(
+            `Bienvenido a Sportify. 
+            Los comandos de voz son de la forma: 'ir a', acompañado de la seccion. 
+            Adicionalmente en la pagina principal se puede usar: 'ir a', seguido del deporte.`
+        );
+        message.lang = "es-Es";
+        message.pitch = 10;
+        message.rate = 0.7;
+        message.volume = 1;
+        // Speak the message
+        synth.speak(message);
 
-testBtn.addEventListener('click', testSpeech);
-testBtn2.addEventListener('click', testSpeech);
+    }
+    
+    // fill the tile with the phrases
+    if (!tile_content_created) {
+        let tile_content = document.querySelector(".tile-content");
+        phrases.forEach(element => {
+            let individual_phrase = document.createElement("p");
+            individual_phrase.className = "phrases";
+            individual_phrase.innerText = element;
+            tile_content.appendChild(individual_phrase);
+        });
+        tile_content_created = true;
+    }
+
+    let optionsWindow = document.getElementById('optionsWindow');
+    // Calculate the position of the button
+    let buttonRect = button.getBoundingClientRect();
+
+    // Check if the button is in the footer
+    let isFooterIcon = button.classList.contains('footer_icons');
+
+    // Set the position of the options window relative to the button
+    if (isFooterIcon) {
+        // For buttons in the footer, position the options window higher than the button
+        optionsWindow.style.top = (buttonRect.top - optionsWindow.offsetHeight - 215 + window.scrollY) + 'px';
+    } else {
+        // For buttons in the header or elsewhere, position the options window below the button
+        optionsWindow.style.top = (buttonRect.bottom + window.scrollY) + 'px';
+        
+    }
+    optionsWindow.style.left = (buttonRect.left + window.scrollX) + 'px';
+    
+    // Toggle the visibility of the options window
+    if (optionsWindow.style.display === 'none' || optionsWindow.style.display === '') {
+        optionsWindow.style.display = 'block';
+        speak();
+    } else {
+        optionsWindow.style.display = 'none';
+        synth.cancel();
+    }
+
+}
+
+
+
+
