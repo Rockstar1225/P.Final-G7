@@ -1,4 +1,5 @@
 <html>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
     <head>
       <script type="application/javascript" src="/socket.io/socket.io.js"></script>
       <script type="application/javascript" src="./client/scripts/client.js"></script>
@@ -83,7 +84,7 @@
             <button class="footer_icons" aria-label="shopping cart" onclick="chart_in(true)"><img src="./client/imgs/shopping_cart.webp" alt="shopping cart"></button>
             <button class="footer_icons" aria-label="help"><img src="./client/imgs/question_icon.jpg" alt="help"></button>
             <button class="footer_icons" aria-label="profile" onclick="logged(true)"><img src="./client/imgs/profile_icon.webp" alt="profile"></button>
-            <button class="footer_icons" aria-label="voice commands"><img src="./client/imgs/speaking_icon.webp" alt="voice commands"></button>
+            <button class="footer_icons" id="footer_voice" aria-label="voice commands"><img src="./client/imgs/speaking_icon.webp" alt="voice commands"></button>
         </div>
         </footer>
         <script type="application/javascript" src="../store.js"></script>

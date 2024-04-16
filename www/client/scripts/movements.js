@@ -1,4 +1,5 @@
 
+const pathRelativoActual = new URL('.', import.meta.url).pathname;
 let posicion_inicial = { alpha: -1, beta: -1, gamma: -1 };
 let aceleracion = 0;
 let radio = 0.25; //Radio aprox. de un movil
@@ -18,12 +19,15 @@ window.addEventListener("devicemotion", function(event){
         let distancia_z = Math.abs(radio*(posicion_actual.alpha - posicion_inicial.alpha)*tiempo, 2);
         let distancia_y = Math.abs(radio*(posicion_actual.gamma - posicion_inicial.gamma)*tiempo, 2);
         let distancia_x = Math.abs(radio*(posicion_actual.beta - posicion_inicial.beta)*tiempo, 2);
-        if (distancia_z > 0.5){
-            mostrarMensaje("Eje z movido" + distancia_z);
+        if (distancia_y > 0.5){
+            if (pathRelativoActual == "./index.html"){
+                this.alert("Hola");
+            }
+            else{ this.alert("Hola"); }
         } else if (distancia_x > 0.5){
             mostrarMensaje("Eje x movido" + distancia_x);
-        } else if (distancia_y > 0.5){
-            mostrarMensaje("Eje y movido" + distancia_y);
+        } else if (distancia_z > 0.5){
+            mostrarMensaje("Eje z movido" + distancia_z);
         }
     }
     posicion_inicial.alpha = posicion_actual.alpha;

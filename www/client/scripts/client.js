@@ -2,6 +2,7 @@ const socket = io();
 let sesion;
 let global_user = "";
 window.onload = checkUser();
+alert(sesion);
 
 //-----SECCIÓN BÚSQUEDA-MENÚS---------------
 function logged(principal){

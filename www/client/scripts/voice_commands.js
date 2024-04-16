@@ -27,6 +27,7 @@ var redirects = [
 // var diagnosticPara = document.querySelector('.output');
 
 var testBtn = document.querySelector('#voice_commands');
+var testBtn2 = document.querySelector('#footer_voice');
 
 function randomPhrase() {
     var number = Math.floor(Math.random() * phrases.length);
@@ -35,6 +36,7 @@ function randomPhrase() {
 
 function testSpeech() {
     testBtn.disabled = true;
+    testBtn2.disabled = true;
     
     if (window.location.href === "http://localhost:3000/"){
         let categories = document.querySelectorAll(".c_title");
@@ -112,11 +114,12 @@ function testSpeech() {
     recognition.onspeechend = function () {
         recognition.stop();
         testBtn.disabled = false;
-        
+        testBtn2.disabled = false;
     }
 
     recognition.onerror = function (event) {
         testBtn.disabled = false;
+        testBtn2.disabled = false;
         diagnosticPara.textContent = 'Error occurred in recognition: ' + event.error;
     }
 
@@ -161,3 +164,4 @@ function testSpeech() {
 }
 
 testBtn.addEventListener('click', testSpeech);
+testBtn2.addEventListener('click', testSpeech);
