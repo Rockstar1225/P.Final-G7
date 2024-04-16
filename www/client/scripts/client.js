@@ -50,6 +50,7 @@ function setUser(){
     // mandar al servicio de faboritos que se cree el usuario en favoritos
     if (checkUser() === true){
       socket.emit("fabSwitchUser",global_user);
+      socket.emit("shoppingCartSwitchUser",global_user);
     } else {
       console.log("Usuario Inválido!!");
     } 
@@ -109,4 +110,3 @@ function settingsCat(id){
         
     }
 }
-
