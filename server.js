@@ -8,6 +8,7 @@ const io = require('socket.io')(server);
 const products = require("./store");
 const fabs = require("./fabs");
 const shopping_cart = require("./shopping_cart");
+const { command_center } = require('./command_center');
 
 app.use('/', express.static(path.join(__dirname, 'www')));
 app.use('/client', express.static(path.join(__dirname, 'www', 'client')));
@@ -18,6 +19,7 @@ io.on('connection', (socket) => {
   console.log(`socket connected ${socket.id}`); 
   let fabs_handler = fabs.fabs_handler;
   let shopping_cart_handler = shopping_cart.handler;
+  let command_center_handler = command_center.handler;
 
   socket.on("CLIENT_CONNECTED", () => {
     clientSocket = socket;
@@ -95,6 +97,30 @@ io.on('connection', (socket) => {
   socket.on("shoppingCartGet",function(){
     socket.emit("retFabsGet",shopping_cart_handler.getCart());
     console.log("Carrito retornado");
+  })
+
+  // eventos para la gestión del cuadro de mando
+  socket.on("centerStartMonitoring",function(){
+    command_center_handler.startMonitoring();
+    console.log("Servicio de monitorización activado!!");
+    
+  })
+
+  socket.on("centerStopMonitoring",function(){
+    command_center_handler.stopMonitoring();
+    console.log("Servicio de monitorización desactivado!!");
+  })
+
+  socket.on("centerGetFabs",function(){
+    command_center_handler.getFabProds();
+    console.log("Productos recopilados de favoritos!!");
+    socket.emit("retCenterGetFabs",command_center_handler.list_fab_prods);
+  })
+  
+  socket.on("centerGetCart",function(){
+    command_center_handler.getCartProds();
+    console.log("Productos recopilados del carrito!!");
+    socket.emit("retCenterGetCart",command_center_handler.list_cart_prods);
   })
 
 });

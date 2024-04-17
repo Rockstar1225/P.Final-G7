@@ -5,37 +5,20 @@ window.onload = checkUser();
 alert(sesion);
 
 //-----SECCIÓN BÚSQUEDA-MENÚS---------------
-function logged(principal){
-    if (sesion == 0){
-          if (principal){
-            window.location.href = "./client/client_login.html";
-          } else {
-            window.location.href = "./client_login.html"; 
-          }
+function logged(){
+    if (sesion == 0){ 
+        window.location.href = "./client_login.html"; 
     } else{
-        if (principal){
-          window.location.href = "./client/client_user_profile.html";
-        } else {
-          window.location.href = "./client_user_profile.html";
-        }
-
+        window.location.href = "./client_user_profile.html";
     }
 }
 
-function chart_in(principal){
+function chart_in(){
   alert(sesion);
     if (sesion == 0){
-          if (principal){
-            window.location.href = "./client/client_login.html";
-          } else {
-            window.location.href = "./client_login.html"; 
-          }
+        window.location.href = "./client_login.html"; 
     } else{
-        if (principal){
-          window.location.href = "./client/client_carrito.html";
-        } else {
-          window.location.href = "./client_carrito.html";
-        }
+        window.location.href = "./client_carrito.html";
     } 
   }
 

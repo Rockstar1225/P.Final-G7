@@ -1,0 +1,105 @@
+<html>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <head>
+      <script type="application/javascript" src="/socket.io/socket.io.js"></script>
+      <script type="application/javascript" src="./scripts/client.js"></script>
+      <link rel="stylesheet" href="./styles/style.css">
+      <link rel="stylesheet" href="./styles/index.css">
+    </head>
+    <body>     
+        <!--Header para móvil -->
+        <header id="head_mobile">
+            <h1 class="Title">Sportify</h1>
+            <div class="images">
+                <img src="./imgs/rugby.jpg" alt="rugby" width="50" height="50"> 
+                <img src="./imgs/futbol.avif" alt="futbol" width="50" height="50">
+                <img src="./imgs/raqueta.avif" alt="raqueta" width="50" height="50">
+            </div>
+
+        </header>
+        <!-- Header para tablets y PC-->
+        <header id="head_tablet">
+            <div class="images">
+                <img src="./imgs/futbol.avif" alt="futbol" width="50" height="50">
+                <img src="./imgs/rugby.jpg" alt="rugby" width="50" height="50">
+                <img src="./imgs/raqueta.avif" alt="raqueta" width="50" height="50">
+            </div>
+            <h1 class="Title">Sportify</h1>
+            <div class="funcionalidades">
+                <button class="h_icons"><img src="./imgs/three_bars.webp" alt="options" width="50" height="50"></button>
+                <button class="h_icons" onclick="chart_in()"><img src="./imgs/shopping_cart.webp" alt="shopping cart" width="50" height="50"></button>
+                <button class="h_icons" onclick="testSpeech(this)"><img src="./imgs/speaking_icon.webp" alt="voice commands" width="50" height="50"></button>
+                <button class="h_icons" onclick="toggle_options(this)"><img src="./imgs/question_icon.jpg" alt="help" width="50" height="50"></button>
+                <button class="h_icons" onclick="logged()"><img src="./imgs/profile_icon.webp" alt="profile" width="50" height="50"></button>
+            </div>
+        </header>
+
+        <!-- Tile window for voice commands -->
+        <div id="optionsWindow" class="tile-window">
+          <div class="tile-content">
+            <!-- Content of the tile window -->
+            <h2>Comandos de voz: </h2>
+            
+          </div>
+        </div>
+        
+        <!-- Componente de categorías -->
+        <div id="categories" >
+          <h2 class="cat_list_title">CATEGORÍAS</h2>
+          <div class="list_cat">
+            <div id="cat1" class="cat">
+              <b class="c_title">Fútbol</b>
+              <img id="foot" class="lupa" alt="lupa" src="./imgs/lupa.png" width="25" height="25">
+            </div>
+            <div id="cat2" class="cat">
+              <b class="c_title">Baloncesto</b>
+              <img id="basket" class="lupa" alt="lupa" src="./imgs/lupa.png" width="25" height="25">
+            </div>
+            <div id="cat3" class="cat">
+              <b class="c_title">Tenis</b>
+              <img id="tenis" class="lupa" alt="lupa" src="./imgs/lupa.png" width="25" height="25">
+            </div>
+            <div id="cat4" class="cat">
+              <b class="c_title">Natación</b>
+              <img id="swim" class="lupa" alt="lupa" src="./imgs/lupa.png" width="25" height="25">
+            </div>
+            <div id="cat5" class="cat">
+              <b class="c_title">Balonmano</b>
+              <img id="hand" class="lupa" alt="lupa" src="./imgs/lupa.png" width="25" height="25">
+            </div>
+            <div id="cat6" class="cat">
+              <b class="c_title">Voleibol</b>
+              <img id="voley" class="lupa" alt="lupa" src="./imgs/lupa.png" width="25" height="25">
+            </div>
+            <div id="cat7" class="cat">
+              <b class="c_title">Esgrima</b>
+              <img id="sword" class="lupa" alt="lupa" src="./imgs/lupa.png" width="25" height="25">
+            </div>
+            <div id="cat8" class="cat">
+              <b class="c_title">Rugby</b>
+              <img id="rugby" class="lupa" alt="lupa" src="./imgs/lupa.png" width="25" height="25">
+            </div>
+          </div>
+        </div>
+        <div id="resultados"></div>
+        <!-- <div class="phrase"></div>
+        <div class="result"></div>
+        <div class="output"></div> -->
+
+        <!-- Footer compartido de las páginas-->
+        <footer>
+        <div class="footer_grid">
+            <button class="footer_icons" aria-label="options"><img src="./imgs/three_bars.webp" alt="options"></button>
+            <button class="footer_icons" aria-label="shopping cart" onclick="chart_in()"><img src="./imgs/shopping_cart.webp" alt="shopping cart"></button>
+            <button class="footer_icons" onclick="toggle_options(this)" aria-label="help"><img src="./imgs/question_icon.jpg" alt="help"></button>
+            <button class="footer_icons" aria-label="profile" onclick="logged()"><img src="./imgs/profile_icon.webp" alt="profile"></button>
+            <button class="footer_icons" onclick="testSpeech(this)" aria-label="voice commands"><img src="./imgs/speaking_icon.webp" alt="voice commands"></button>
+        </div>
+        </footer>
+        
+        <script type="application/javascript" src="./scripts/movements.js"></script>
+        <script type="application/javascript" src="./scripts/index.js"></script>
+        <script type="application/javascript" src="./scripts/shopping_cart.js"></script>
+        <script type="application/javascript" src="./scripts/voice_commands.js"></script>
+    </body>
+</html>
