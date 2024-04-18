@@ -2,7 +2,6 @@ const socket = io();
 let sesion;
 let global_user = "";
 window.onload = checkUser();
-alert(sesion);
 
 //-----SECCIÓN BÚSQUEDA-MENÚS---------------
 function logged(){
@@ -14,7 +13,6 @@ function logged(){
 }
 
 function chart_in(){
-  alert(sesion);
     if (sesion == 0){
         window.location.href = "./client_login.html"; 
     } else{

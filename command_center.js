@@ -1,8 +1,8 @@
 const fs = require('fs');
 const io = require('socket.io-client');
-const fabs = require('fabs');
-const cart = require('shopping_cart');
-const store = require('store');
+const fabs = require('./fabs');
+const cart = require('./shopping_cart');
+const store = require('./store');
 const socket = io("http://localhost:3000");
 
 class command_center{

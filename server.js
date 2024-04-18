@@ -8,7 +8,7 @@ const io = require('socket.io')(server);
 const products = require("./store");
 const fabs = require("./fabs");
 const shopping_cart = require("./shopping_cart");
-const { command_center } = require('./command_center');
+const command_center = require('./command_center');
 
 app.use('/', express.static(path.join(__dirname, 'www')));
 app.use('/client', express.static(path.join(__dirname, 'www', 'client')));
