@@ -22,6 +22,11 @@ class shopping_cart {
     
   }
 
+
+  // Reportar el usuario actual de la sesión
+  getUser(){
+    return this.user;
+  }
   // Guardar la base de datos en un archivo JSON
   saveData() {
     let json = JSON.stringify(this.shopping_cart);

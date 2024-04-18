@@ -5,9 +5,58 @@
       <link rel="stylesheet" href="./client/styles/style.css">
       <link rel="stylesheet" href="./index.css">
     </head>
-    <body>     
-         
+    <body onload="changeState(3);initUpdateService();">     
         
+        <!--Header para móvil -->
+        <header id="head_mobile">
+            <h1 class="Title">Sportify</h1>
+            <div class="images">
+                <img src="./client/imgs/rugby.jpg" alt="rugby" width="50" height="50"> 
+                <img src="./client/imgs/futbol.avif" alt="futbol" width="50" height="50">
+                <img src="./client/imgs/raqueta.avif" alt="raqueta" width="50" height="50">
+            </div>
+
+        </header>
+        <!-- Header para tablets y PC-->
+        <header id="head_tablet">
+            <div class="images">
+                <img src="./client/imgs/futbol.avif" alt="futbol" width="50" height="50">
+                <img src="./client/imgs/rugby.jpg" alt="rugby" width="50" height="50">
+                <img src="./client/imgs/raqueta.avif" alt="raqueta" width="50" height="50">
+            </div>
+            <h1 class="Title">Sportify</h1>
+            <div class="funcionalidades">
+                <button class="h_icons" onclick="changeState(1);"><img src="./client/imgs/favoritos.png" alt="fab prods" width="50" height="50"></button>
+                <button class="h_icons" onclick="changeState(2);"><img src="./client/imgs/shopping_cart.webp" alt="shopping carts" width="50" height="50"></button>
+                <button class="h_icons" onclick="changeState(3);"><img src="./client/imgs/usuario.png" alt="users" width="50" height="50"></button> 
+            </div>
+        </header>
+       
+        
+        <!-- Footer compartido de las páginas-->
+        <footer>
+        <div class="footer_grid">
+            <button class="footer_icons" onclick="changeState(1);"><img src="./client/imgs/favoritos.png" alt="fabs"></button>
+            <button class="footer_icons" onclick="changeState(2);"><img src="./client/imgs/shopping_cart.webp" alt="carts"></button>
+            <button class="footer_icons" onclick="changeState(3);"><img src="./client/imgs/usuario.png" alt="users"></button>
+        </div>
+        </footer>
+
+        <!-- Tabla de faboritos -->
+        <div id="fabs_table" class="table">
+            tabla de fabs
+        </div>
+        <!-- Tabla de Cliente-Producto -->
+        <div id="prods_table" class="table">
+            tabla de productos
+        </div>
+
+        <!-- Tabla de usuarios -->
+        <div id="users_table" class="table">
+            tabla de usuarios
+        </div>
+
+
         <script type="application/javascript" src="./index.js"></script> 
     </body>
 </html>

@@ -22,7 +22,7 @@ class command_center{
     }
 
     startMonitoring(){
-        this.monitoring_intervalId = setInterval(this.update_users,3000);
+        this.monitoring_intervalId = setInterval(() => {this.updateUsers();},3000);
         console.log("Monitoreo activado!!");
     }
 
@@ -34,6 +34,8 @@ class command_center{
     }
 
     updateUsers(){
+        this.list_users_cart = [];
+        this.list_users_fabs = [];
         fs.readdir(this.ruta_cart, (err,archivos) => {
             if (err) {
                 console.error("Error de lectura de usuarios faboritos", err);
@@ -55,6 +57,13 @@ class command_center{
                 this.list_users_fabs.push(archivo.replace(".json",""));
             })
         })
+    }
+
+    getFabUsers(){
+        return this.list_users_fabs;
+    }
+    getCartUsers(){
+        return this.list_users_cart;
     }
 
     getFabProds(){

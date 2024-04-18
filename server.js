@@ -84,7 +84,6 @@ io.on('connection', (socket) => {
     console.log("Usuario "+user+" cambiado carrito!!");
     
   })
-
   socket.on("shoppingCartAddProd",function(name){
     shopping_cart_handler.addProd(name);
     console.log("Producto añadido a carrito!!");
@@ -94,9 +93,12 @@ io.on('connection', (socket) => {
     shopping_cart_handler.remProd(name);
     console.log("Producto eliminado de carrito!!");
   })
-  socket.on("shoppingCartGet",function(){
-    socket.emit("retFabsGet",shopping_cart_handler.getCart());
+  socket.on("shoppingCartGetProds",function(){
+    socket.emit("retShoppingCartGetProds",shopping_cart_handler.getCart());
     console.log("Carrito retornado");
+  })
+  socket.on("shoppingCartGetUser", function(){
+    socket.emit("retShoppingCartGetUser", shopping_cart_handler.getUser());
   })
 
   // eventos para la gestión del cuadro de mando
@@ -121,6 +123,14 @@ io.on('connection', (socket) => {
     command_center_handler.getCartProds();
     console.log("Productos recopilados del carrito!!");
     socket.emit("retCenterGetCart",command_center_handler.list_cart_prods);
+  })
+  socket.on("centerGetFabUsers",function(){
+    socket.emit("retCenterGetFabUsers", command_center_handler.getFabUsers());
+    console.log("usuarios enviados: "+command_center_handler.getFabUsers());
+  })
+  socket.on("centerGetCartUsers",function(){
+    socket.emit("retCenterGetCartUsers", command_center_handler.getCartUsers());
+    console.log("usuarios enviados: "+command_center_handler.getCartUsers());
   })
 
 });

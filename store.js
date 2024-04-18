@@ -6,7 +6,7 @@ class database {
 
   database = {
     "productos": [
-      {"name":"Gorro", "cantidad":2, "deporte": "swim", "price":10.3, "desc": "Gorro de goma perfecto para natación."}
+      {"name":"Gorro", "quantity":2, "sport": "swim", "price":10.3, "desc": "Gorro de goma perfecto para natación."}
     ]
   };
   
@@ -39,7 +39,7 @@ class database {
   // dep: el deporte/categoría de cada producto
   // price: el precio de cada producto 
   addProd(nombre, cantidad, dep, price,desc) {
-    this.database.productos.push({"name": nombre, "cantidad": cantidad, "deporte": dep, "price": price, "desc": desc});
+    this.database.productos.push({"name": nombre, "quantity": cantidad, "sport": dep, "price": price, "desc": desc});
     saveData(); 
   }
 
@@ -47,7 +47,7 @@ class database {
   seekProds(sport) {
     let res = [];
     for (const prod of this.database.productos) {
-      if (prod["deporte"] === sport) {
+      if (prod["sport"] === sport) {
         res.push(prod);
       }
     }
