@@ -71,10 +71,13 @@ function cambio_bool(){
     if(!mov_time){mov_time = true;}
     else{mov_time = false;}
 }
+let boton = document.getElementById("movement");
+boton.addEventListener("mousedown", function(){
+    window.addEventListener("deviceorientation", function(event){
+        if(mov_time){
+            movimientos(event);
+            mov_time = false;
+        }
+    });
+})
 document.addEventListener("DOMContentLoaded", iniciarUnaVez);
-window.addEventListener("deviceorientation", function(event){
-    if(mov_time){
-        movimientos(event);
-        mov_time = false;
-    }
-});

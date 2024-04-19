@@ -7,6 +7,12 @@ body{
     background-color: #F94B4B;
     height: fit-content;
 }
+
+#movement{
+    user-select: none; /* Evita la selección de texto */
+    -webkit-touch-callout: none; /* Evita que se muestre el menú de copiar en dispositivos táctiles */
+}
+
 footer {
   position: fixed;
   left: 0;
