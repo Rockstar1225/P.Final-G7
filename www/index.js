@@ -15,10 +15,6 @@ function startMonitoring(){
   socket.emit("centerStartMonitoring");
 }
 
-function stopMonitoring(){
-  socket.emit("centerStopMonitoring");
-}
-
 function changeState(state){
   let fabs_div = document.getElementById("fabs_table");
   let cart_div = document.getElementById("prods_table");
@@ -41,95 +37,119 @@ function changeState(state){
   }
 }
 
-function generateTable(id,content){
-  let div = document.getElementById(id); 
-  let fabs_prods = [];
-  let cart_prods = [];
-  let users = [];
-  let tabla = document.createElement("table");
-  let tabl_body = document.createElement("tbody"); 
-  let products_fields = ["name","quantity","sport","price","desc"];
+// Genera el contenido de las tablas de productos y faboritos
+// dada una lista de productos y un id
+function generateContent(list,id){
+
+    let div = document.getElementById(id);
+    let tabla = document.createElement("table");
+    let tabl_body = document.createElement("tbody"); 
+    let products_fields = ["name","quantity","sport","price","desc"];
+    let header_elems = ["Username","Product Name","Max Quantity","Sport","Price","Desc"];
+    
+    //Títulos de tabla
+    let header = document.createElement("tr");
+    for (let i = 0; i < 6; i++) {
+      let node = document.createTextNode(header_elems[i]);
+      let celda = document.createElement("td");
+      celda.appendChild(node);
+      header.appendChild(celda);
+    }
+    header.style.backgroundColor = "#31BE3F";
+    tabl_body.appendChild(header);
+
+    // Productos de la misma
+    for (let i =0;i<list.length;i+=1){
+
+      let hilera = document.createElement("tr");
+      let celdaUser = document.createElement("td"); 
+      //console.log("Producto: "+list[i]["user"]);
+      let textoUser = document.createTextNode(list[i]["user"]);
+      celdaUser.appendChild(textoUser); 
+      hilera.appendChild(celdaUser); 
+          
+      for (const etiqueta of products_fields){
+        let celdaProd = document.createElement("td");
+        celdaProd.appendChild(document.createTextNode(list[i]["prod"][etiqueta]));
+        hilera.appendChild(celdaProd);
+      } 
+
+      tabl_body.appendChild(hilera);
+    }
+
+  tabla.appendChild(tabl_body);
+  div.innerHTML = "";
+  div.appendChild(tabla);
+  tabla.setAttribute("border","2");
+}
+
+// Genera las tablas dinámicamente
+// dependiendo del tipo que sean
+function generateTable(id,content){ 
 
   if (content === "fabs"){
-    socket.emit("centerGetFabProds");
-    socket.on("retCenterGetFabProds",function(list){
-        for (const prod of list) {
-          fabs_prods.push(prod);
-        }
-    })
-    
-    for (let i =0;i<fabs_prods.length;i+=1){
-      let hilera = document.createElement("tr");
-
-      for (let j=0;j<products_fields.length;j+=1){
-        let celda = document.createElement("td");
-        let textoCelda = document.createTextNode(fabs_prods[i][products_fields[j]]);
-        celda.appendChild(textoCelda);
-        hilera.appendChild(celda);
-      }
-      tabl_body.appendChild(hilera);
-    }
-    tabla.appendChild(tabl_body);
-    div.innerHTML = "";
-    div.appendChild(tabla);
-    tabla.setAttribute("border","2");
+    socket.emit("centerGetFabs");
+    socket.on("retCenterGetFabs",function(list){
+        generateContent(list,id);
+    }) 
 
   } else if (content === "cart"){
-    socket.emit("centerGetCartProds");
-    socket.on("retCenterGetCartProds",function(list){
-        for (const prod of list) {
-          cart_prods.push(prod);
-        }
+    socket.emit("centerGetCart");
+    socket.on("retCenterGetCart",function(list){
+      generateContent(list,id);
     })
-
-    for (let i =0;i<cart_prods.length;i+=1){
-      let hilera = document.createElement("tr");
-
-      for (let j=0;j<products_fields.length;j+=1){
-        let celda = document.createElement("td");
-        let textoCelda = document.createTextNode(cart_prods[i][products_fields[j]]);
-        celda.appendChild(textoCelda);
-        hilera.appendChild(celda);
-      }
-      tabl_body.appendChild(hilera);
-    }
-    tabla.appendChild(tabl_body);
-    div.innerHTML = "";
-    div.appendChild(tabla);
-    tabla.setAttribute("border","2");
 
   } else if (content === "users"){
     socket.emit("centerGetFabUsers");
-    socket.on("retCenterGetFabUsers",function(data){
-      for (const user of data) {
-        users.push(user);
-      }
-    });
-
-    socket.emit("centerGetCartProds");
-    socket.on("retCenterGetCartProds",function(data){
-      for (const user of data) {
-        users.push(user);
-      }
-    });
-    console.log("Usuarios: "+users); 
-    for (let i =0;i<users.length;i+=1){
-      let hilera = document.createElement("tr");
+    socket.on("retCenterGetFabUsers",function(dataFab){
       
-      let celda = document.createElement("td");
-      let textoCelda = document.createTextNode(users[i][products_fields[j]]);
-      celda.appendChild(textoCelda);
-      hilera.appendChild(celda); 
-      tabl_body.appendChild(hilera);
-    }
-    tabla.appendChild(tabl_body);
-    div.innerHTML = "";
-    div.appendChild(tabla);
-    tabla.setAttribute("border","2");
+      socket.emit("centerGetCartUsers");
+      socket.on("retCenterGetCartUsers",function(dataCart){
+
+        let users = dataFab.concat(dataCart);
+        let users_dup = [];
+        users.forEach(element => {
+          if ( !users_dup.includes(element)){
+            users_dup.push(element);
+          }
+        });
+
+        let div = document.getElementById(id);
+        let tabla = document.createElement("table");
+        let tabl_body = document.createElement("tbody");
+        
+        // Título de la tabla
+        let header = document.createElement("tr");
+        let node = document.createTextNode("Username");
+        let celda = document.createElement("td");
+        celda.appendChild(node);
+        header.appendChild(celda); 
+        header.style.backgroundColor = "#31BE3F";
+        tabl_body.appendChild(header);
+
+        // Productos en sí
+        for (let i =0;i<users_dup.length;i+=1){
+          let hilera = document.createElement("tr"); 
+          let celda = document.createElement("td");
+          let textoCelda = document.createTextNode(users_dup[i]);
+          celda.appendChild(textoCelda);
+          hilera.appendChild(celda); 
+          tabl_body.appendChild(hilera);
+        }
+
+        tabla.appendChild(tabl_body);
+        div.innerHTML = "";
+        div.appendChild(tabla);
+        tabla.setAttribute("border","2");
+
+      });
+    }); 
 
   }
 }
 
+// Función para iniciar el servicio de 
+// actualización de la interfaz.
 function initUpdateService(){
   socket.emit("centerStartMonitoring");
   intervalMonitor = setInterval(() => {
@@ -138,10 +158,6 @@ function initUpdateService(){
     generateTable("users_table","users");
     console.log("Display actualizado");
   },3000);
-}
-
-function stopUpdateService(){
-  clearInterval(intervalMonitor);
 }
 
 

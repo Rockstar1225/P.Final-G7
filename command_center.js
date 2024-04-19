@@ -67,8 +67,9 @@ class command_center{
     }
 
     getFabProds(){
+        this.list_fab_prods = []; 
         for (const user of this.list_users_fabs) {
-            this.fabs_handler.setUser(user);
+            this.fabs_handler.setUser(user); 
             for (const prod of this.fabs_handler.fabs_data.fabs){
                 this.list_fab_prods.push({"user":user,"prod": prod});
             }
@@ -76,6 +77,7 @@ class command_center{
     }
 
     getCartProds(){
+        this.list_cart_prods = [];
         for (const user of this.list_users_cart) {
             this.cart_handler.setUser(user);
             for (const prod of this.cart_handler.shopping_cart.cart){

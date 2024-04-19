@@ -114,8 +114,8 @@ io.on('connection', (socket) => {
   })
 
   socket.on("centerGetFabs",function(){
-    command_center_handler.getFabProds();
-    console.log("Productos recopilados de favoritos!!");
+    command_center_handler.getFabProds(); 
+    console.log("Productos recopilados de faboritos!!");
     socket.emit("retCenterGetFabs",command_center_handler.list_fab_prods);
   })
   

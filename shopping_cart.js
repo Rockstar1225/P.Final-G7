@@ -39,8 +39,7 @@ class shopping_cart {
   // Recuperar los favoritos desde el archivo JSON
   loadData() { 
     let ruta = this.ruta+this.user+".json";
-    let data = fs.readFileSync(ruta);
-    console.log("datos de carrito usuario "+data);
+    let data = fs.readFileSync(ruta); 
     this.shopping_cart = JSON.parse(data);
   }
 

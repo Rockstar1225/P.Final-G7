@@ -33,8 +33,7 @@ class fabourites {
   // Recuperar los favoritos desde el archivo JSON
   loadData() { 
     let ruta = this.ruta+this.user+".json";
-    let data = fs.readFileSync(ruta);
-    console.log("datos de favoritos usuario "+data);
+    let data = fs.readFileSync(ruta); 
     this.fabs_data = JSON.parse(data);
   }
 
