@@ -7,6 +7,7 @@ let tiempo = null;
 let angulo_inicial;
 let angulo_actual;
 let mov_time = false;
+let touch_time = false;
 
 
 
@@ -72,12 +73,16 @@ function cambio_bool(){
     else{mov_time = false;}
 }
 let boton = document.getElementById("movement");
-boton.addEventListener("mousedown", function(){
-    window.addEventListener("deviceorientation", function(event){
-        if(mov_time){
-            movimientos(event);
-            mov_time = false;
-        }
-    });
+boton.addEventListener("touchstart", function(){
+    touch_time = true;
+})
+boton.addEventListener("touchend", function(){
+    touch_time = false;
 })
 document.addEventListener("DOMContentLoaded", iniciarUnaVez);
+window.addEventListener("deviceorientation", function(event){
+    if(mov_time && touch_time){
+        movimientos(event);
+        mov_time = false;
+    }
+});

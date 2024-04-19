@@ -1,12 +1,12 @@
 body{
-  padding:15px;
+  padding:5px;
 }
 
 #categories {
   display: flex;
   align-items: center;
   flex-flow: column;
-  margin: 10% 10%;
+  margin: 10% 5%;
   background-color: white;
   height: 40vh;
 }

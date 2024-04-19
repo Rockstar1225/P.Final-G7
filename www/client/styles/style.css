@@ -8,11 +8,6 @@ body{
     height: fit-content;
 }
 
-#movement{
-    user-select: none; /* Evita la selección de texto */
-    -webkit-touch-callout: none; /* Evita que se muestre el menú de copiar en dispositivos táctiles */
-}
-
 footer {
   position: fixed;
   left: 0;
@@ -113,6 +108,15 @@ footer {
         margin-right: 8%;
 
     }
+    #movement{
+        user-select: none; /* Evita la selección de texto */
+        -webkit-touch-callout: none; /* Evita que se muestre el menú de copiar en dispositivos táctiles */
+        font-size: large;
+        margin-left: 70%;
+        background-color: aquamarine;
+        position: fixed;
+    
+    }
 }
 @media only screen and (min-width: 800px) {
     #head_mobile, footer{
@@ -155,6 +159,9 @@ footer {
         margin-left: 25%;
         margin-right: 25%;
 
+    }
+    .b_move{
+        display: none;
     }
 }
 
