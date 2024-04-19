@@ -5,7 +5,6 @@ var SpeechRecognitionEvent = SpeechRecognitionEvent || webkitSpeechRecognitionEv
 var phrases = [
     'ir a búsqueda',
     'ir a carrito',
-    'ir a categorías',
     'ir a login',
     'ir a producto',
     'ir a perfil',
@@ -15,11 +14,10 @@ var phrases = [
 var redirects = [
     '/client/client_busqueda.html',
     '/client/client_carrito.html',
-    '/client/client_categorias.html',
     '/client/client_login.html',
     '/client/client_product.html',
     '/client/client_user_profile.html',
-    '/'
+    '/client/index.html'
 ];
 
 
@@ -180,7 +178,7 @@ function toggle_options(button) {
     // Set the position of the options window relative to the button
     if (isFooterIcon) {
         // For buttons in the footer, position the options window higher than the button
-        optionsWindow.style.top = (buttonRect.top - optionsWindow.offsetHeight - 215 + window.scrollY) + 'px';
+        optionsWindow.style.top = (buttonRect.top - optionsWindow.offsetHeight - 190 + window.scrollY) + 'px';
     } else {
         // For buttons in the header or elsewhere, position the options window below the button
         optionsWindow.style.top = (buttonRect.bottom + window.scrollY) + 'px';
