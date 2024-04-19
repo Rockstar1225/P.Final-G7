@@ -40,21 +40,22 @@ function movimientos(event){
     let dif_angulo_z = angulo_actual.gamma - angulo_inicial.gamma;
     let dif_angulo_x = angulo_actual.alpha - angulo_inicial.alpha;
     let dif_angulo_y = angulo_actual.beta - angulo_inicial.beta;
-    if ( -10 < dif_angulo_z < 10 && -10 < dif_angulo_x < 10 && -10 < dif_angulo_y < 10){
+    if (dif_angulo_x > 50){
+        if(posicion_actual.x - posicion_inicial.x < -0.5){
+            logged();
+        }
+        else if(posicion_actual.x - posicion_inicial.x > 0.5){
+            window.location.href= "./client_busqueda.html";
+        }
+    }
+    else if ( -10 < dif_angulo_z < 10 && -10 < dif_angulo_x < 10 && -10 < dif_angulo_y < 10){
         console.log(posicion_actual.z - posicion_inicial.z);
-        if (posicion_actual.z - posicion_inicial.z > 0.5){
+        if (posicion_actual.z - posicion_inicial.z <  -0.5){
             console.log("Opcion11");
             chart_in();
         }
     }
-    else{
-        if (dif_angulo_y > 30 && -0.05 < posicion_actual.z - posicion_inicial.z < 0.05 && posicion_actual.x - posicion_inicial.x < 0){
-            logged();
-        }
-        else if (dif_angulo_y > 30 && -0.05 < posicion_actual.z - posicion_inicial.z < 0.05 && posicion_actual.x - posicion_inicial.x > 0){
-            alert("Hola");
-        }
-    }
+    
     angulo_actual = angulo_inicial;
     velocidad_actual = velocidad_inicial;
     posicion_actual = posicion_inicial;
