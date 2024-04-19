@@ -6,7 +6,7 @@ class database {
 
   database = {
     "productos": [
-      {"name":"Gorro", "quantity":2, "sport": "swim", "price":10.3, "desc": "Gorro de goma perfecto para natación."}
+      { "name": "Gorro", "quantity": 2, "sport": "natación", "price":10.3, "desc": "Gorro de goma perfecto para natación."}
     ]
   };
   
