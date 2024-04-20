@@ -1,89 +1,47 @@
-let posicion_inicial;
-let velocidad_inicial;
-let posicion_actual;
-let velocidad_actual;
-let aceleracion = null;
-let tiempo = null;
-let angulo_inicial;
+let angulo_inicial = {alpha: 0, beta: 0, gamma: 0};
 let angulo_actual;
-let mov_time = false;
 let touch_time = false;
 
-
-
-function inicio(event){
-    posicion_inicial = {x: 0, y: 0, z: 0};
-    velocidad_inicial = {x: 0, y: 0, z: 0};
-    angulo_inicial = {alpha: event.alpha, beta: event.beta, gamma: event.gamma};
-    console.log(angulo_inicial.alpha, angulo_inicial.beta, angulo_inicial.gamma);
-    console.log(posicion_inicial.x, posicion_inicial.y, posicion_inicial.z);
-    window.removeEventListener("deviceorientation", inicio);
-}
-
 function movimientos(event){
-    if (aceleracion == null || tiempo == null) {
+    angulo_actual = {alpha: event.alpha, beta: event.beta, gamma: event.gamma};
+    
+    if (angulo_inicial.alpha === 0){
+        angulo_inicial = angulo_actual;
         return;
     }
-    angulo_actual = {alpha: event.alpha, beta: event.beta, gamma: event.gamma};
-
-    velocidad_actual = {
-        x: aceleracion.x * tiempo + velocidad_inicial.x,
-        y: aceleracion.y * tiempo + velocidad_inicial.y,
-        z: aceleracion.z * tiempo + velocidad_inicial.z
-    };
-
-    posicion_actual = {
-        x: 0.5 * aceleracion.x * tiempo * tiempo + tiempo * velocidad_actual.x + posicion_inicial.x,
-        y: 0.5 * aceleracion.y * tiempo * tiempo + tiempo * velocidad_actual.y + posicion_inicial.y,
-        z: 0.5 * aceleracion.z * tiempo * tiempo + tiempo * velocidad_actual.z + posicion_inicial.z
-    };
-    let dif_angulo_z = angulo_actual.gamma - angulo_inicial.gamma;
-    let dif_angulo_x = angulo_actual.alpha - angulo_inicial.alpha;
-    let dif_angulo_y = angulo_actual.beta - angulo_inicial.beta;
-    if (dif_angulo_x > 50){
-        if(posicion_actual.x - posicion_inicial.x < -0.5){
-            logged();
-        }
-        else if(posicion_actual.x - posicion_inicial.x > 0.5){
-            window.location.href= "./client_busqueda.html";
-        }
+    
+    let dif_angulo_y = angulo_actual.gamma - angulo_inicial.gamma;
+    let dif_angulo_z = angulo_actual.alpha - angulo_inicial.alpha;
+    let dif_angulo_x = angulo_actual.beta - angulo_inicial.beta;
+    console.log(dif_angulo_x, dif_angulo_y, dif_angulo_z);
+    
+    if (dif_angulo_y < -45){
+        alert("op1");
+        logged();
     }
-    else if ( -10 < dif_angulo_z < 10 && -10 < dif_angulo_x < 10 && -10 < dif_angulo_y < 10){
-        console.log(posicion_actual.z - posicion_inicial.z);
-        if (posicion_actual.z - posicion_inicial.z <  -0.5){
-            console.log("Opcion11");
-            chart_in();
-        }
+    else if (dif_angulo_x > 45){
+        alert("op2");
+        chart_in();
+    }
+    else if (dif_angulo_y < -45 && Math.abs(dif_angulo_x) < 10){
+        alert("op3");
+        window.location.href = "./client_busqueda.html";
     }
     
-    angulo_actual = angulo_inicial;
-    velocidad_actual = velocidad_inicial;
-    posicion_actual = posicion_inicial;
+    angulo_inicial = angulo_actual;
 }
 
-function iniciarUnaVez() {
-    window.addEventListener("deviceorientation", inicio);
-    window.addEventListener("devicemotion", function(event){
-        aceleracion = event.acceleration;
-        tiempo = 1;
-    });
-}
-setInterval(cambio_bool, 1000);
-function cambio_bool(){
-    if(!mov_time){mov_time = true;}
-    else{mov_time = false;}
-}
 let boton = document.getElementById("movement");
 boton.addEventListener("touchstart", function(){
     touch_time = true;
-})
+});
+
 boton.addEventListener("touchend", function(){
     touch_time = false;
-})
-document.addEventListener("DOMContentLoaded", iniciarUnaVez);
+});
+
 window.addEventListener("deviceorientation", function(event){
-    if(mov_time && touch_time){
+    if(touch_time){
         movimientos(event);
-        mov_time = false;
     }
 });
