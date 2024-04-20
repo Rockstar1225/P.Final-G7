@@ -1,41 +1,41 @@
-{"productos":[{"name":"Gorro","cantidad":2,"sport":"natación","price":10.3,"desc":"Gorro de goma perfecto para natación."},
+{"productos":[{"name":"gorro","cantidad":2,"sport":"natación","price":10.3,"desc":"Gorro de goma perfecto para natación."},
 {
-    "name": "Hypervenom Phelon III",
+    "name": "zapatos",
     "cantidad": 2,
     "sport": "fútbol",
     "price": 63.12,
     "desc": "Botas de fútbol Hombre."
 },
 {
-    "name": "SKLZ Pro",
+    "name": "canasta",
     "cantidad": 2,
     "sport": "baloncesto",
     "price": 34.97,
     "desc": "Mini Canasta Interior."
 },
 {
-    "name": "HEAD Attitude Pro",
+    "name": "raqueta",
     "cantidad": 2,
     "sport": "tenis",
     "price": 34.97,
     "desc": "Raqueta de tenis."
 },
 {
-    "name": "meteor",
+    "name": "pelota",
     "cantidad": 2,
     "sport": "tenis",
     "price": 49.95,
     "desc": "Pelota de entrenamiento para niños juventud adultos."
 },
 {
-    "name": "harayaa",
+    "name": "máscara",
     "cantidad": 2,
     "sport": "esgrima",
     "price": 50.89,
     "desc": "Máscara de Esgrima Portátil Universal para Accesorios para Competiciones Deportivas, M."
 },
 {
-    "name": "Casco suave de rugby",
+    "name": "casco",
     "cantidad": 2,
     "sport": "rugby",
     "price": 50.89,

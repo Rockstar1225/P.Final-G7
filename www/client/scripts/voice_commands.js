@@ -64,7 +64,7 @@ function testSpeech(button) {
         if (phrases.includes(speechResult)) {
             // comandos con gramatica
             let index = phrases.indexOf(speechResult)
-            if (index >= 7){
+            if (index >= 6){
                 window.location.href = `${redirects[0]}`;
             }
             else{
@@ -157,6 +157,15 @@ function toggle_options(button) {
     }
     
     // fill the tile with the phrases
+    var phrases = [
+        'ir a búsqueda',
+        'ir a carrito',
+        'ir a login',
+        'ir a producto',
+        'ir a perfil',
+        'ir a inicio'
+    ];
+    
     if (!tile_content_created) {
         let tile_content = document.querySelector(".tile-content");
         phrases.forEach(element => {

@@ -92,36 +92,3 @@ function settingsCat(id){
     }
 }
 
-// parte de deporte
-// Listen for the 'seekProds' event on the socket
-socket.on('retProdSport', (data) => {
-  console.log(`Received seekProds event with data: ${data}`);
-  // Change window location with query parameters
-  console.log(data);
-  window.location.href = `/client/client_busqueda.html?data=${JSON.stringify(data)}`;
- 
-});
-
-// Function to emit the 'seekProds' event with the provided category
-function get_products_by_category(category) {
-  console.log(category);
-  socket.emit('getProdSport', category);
-}
-
-// On the client_busqueda.html page
-function load_sports() {
-  // Extract data from query parameters
-  const urlParams = new URLSearchParams(window.location.search);
-  const dataString = urlParams.get('data');
-  const data = JSON.parse(dataString);
-
-  // Use the extracted data
-  let parent_div = document.getElementById("result_list");
-  data.forEach(element => {
-    let product = document.createElement("p");
-    product.innerHTML = `nombre: ${element.name}. Deporte: ${element.sport}.
-        Descripcion: ${element.desc} Precio: ${element.price}€.`
-    parent_div.appendChild(product);
-  });
-  history.replaceState({}, document.title, "/client/client_busqueda.html");
-}

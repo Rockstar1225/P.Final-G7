@@ -24,7 +24,7 @@ h1{
     
 }
 
-#manual > img{
+#manual > button{
     border: solid black 3px;
     border-radius: 50%;
     background-color: orange;
