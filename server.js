@@ -115,22 +115,18 @@ io.on('connection', (socket) => {
 
   socket.on("centerGetFabs",function(){
     command_center_handler.getFabProds(); 
-    console.log("Productos recopilados de faboritos!!");
     socket.emit("retCenterGetFabs",command_center_handler.list_fab_prods);
   })
   
   socket.on("centerGetCart",function(){
-    command_center_handler.getCartProds();
-    console.log("Productos recopilados del carrito!!");
+    command_center_handler.getCartProds(); 
     socket.emit("retCenterGetCart",command_center_handler.list_cart_prods);
   })
   socket.on("centerGetFabUsers",function(){
     socket.emit("retCenterGetFabUsers", command_center_handler.getFabUsers());
-    console.log("usuarios enviados: "+command_center_handler.getFabUsers());
   })
   socket.on("centerGetCartUsers",function(){
-    socket.emit("retCenterGetCartUsers", command_center_handler.getCartUsers());
-    console.log("usuarios enviados: "+command_center_handler.getCartUsers());
+    socket.emit("retCenterGetCartUsers", command_center_handler.getCartUsers()); 
   })
 
 });

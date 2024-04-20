@@ -12,7 +12,9 @@ b {
   flex-flow: column nowrap;
   width: 100%;
   height: 60%;
-  margin: 15px 0 0 0; 
+  margin: 15px 0 0 0;
+  align-items: center;
+  justify-content: center; 
 }
 
 table { 
@@ -20,9 +22,10 @@ table {
   width: 100%;
   background-color: white;
   overflow: auto; 
+  
 }
 
-th, td {
+th, td { 
   border: 1px solid black;
   padding: 8px;
   text-align: left;
@@ -33,4 +36,18 @@ th, td {
   justify-content: center;
   gap: 20px; 
 
+}
+
+@media only screen and (max-width: 800px){
+    table {
+      display: flex; 
+      flex-flow: row wrap;
+      width: 100%;
+      align-content: center;
+    }
+    th,td {
+      flex: 1 1 auto;
+      align-content: center;
+      width: 100%;
+    }
 }
