@@ -2,6 +2,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
     <head>
       <script type="application/javascript" src="/socket.io/socket.io.js"></script>
+      <script type="application/javascript" src="./scripts/client.js"></script>
       <link rel="stylesheet" href="./styles/style.css">
       <link rel="stylesheet" href="./styles/index.css">
     </head>
@@ -48,35 +49,43 @@
           <div class="list_cat">
             <div id="cat1" class="cat">
               <b class="c_title">Fútbol</b>
-              <img id="foot" class="lupa" alt="lupa" src="./imgs/lupa.png" width="25" height="25">
+              <button onclick="get_products_by_category(`fútbol`)"><img id="foot" class="lupa" alt="lupa" src="./imgs/lupa.png" width="25" height="25">
+              </button>
             </div>
             <div id="cat2" class="cat">
               <b class="c_title">Baloncesto</b>
-              <img id="basket" class="lupa" alt="lupa" src="./imgs/lupa.png" width="25" height="25">
+              <button onclick="get_products_by_category(`baloncesto`)"><img id="basket" class="lupa" alt="lupa" src="./imgs/lupa.png" width="25" height="25">
+                </button>
             </div>
             <div id="cat3" class="cat">
               <b class="c_title">Tenis</b>
-              <img id="tenis" class="lupa" alt="lupa" src="./imgs/lupa.png" width="25" height="25">
+              <button onclick="get_products_by_category(`tenis`)"><img id="tenis" class="lupa" alt="lupa" src="./imgs/lupa.png" width="25" height="25">
+              </button>
             </div>
             <div id="cat4" class="cat">
               <b class="c_title">Natación</b>
-              <img id="swim" class="lupa" alt="lupa" src="./imgs/lupa.png" width="25" height="25">
+              <button onclick="get_products_by_category(`natación`)"><img id="swim" class="lupa" alt="lupa" src="./imgs/lupa.png" width="25" height="25">
+              </button>
             </div>
             <div id="cat5" class="cat">
               <b class="c_title">Balonmano</b>
-              <img id="hand" class="lupa" alt="lupa" src="./imgs/lupa.png" width="25" height="25">
+              <button onclick="get_products_by_category(`balonmano`)"><img id="hand" class="lupa" alt="lupa" src="./imgs/lupa.png" width="25" height="25">
+                </button>
             </div>
             <div id="cat6" class="cat">
               <b class="c_title">Voleibol</b>
-              <img id="voley" class="lupa" alt="lupa" src="./imgs/lupa.png" width="25" height="25">
+              <button onclick="get_products_by_category(`voleibol`)"><img id="voley" class="lupa" alt="lupa" src="./imgs/lupa.png" width="25" height="25">
+                </button>
             </div>
             <div id="cat7" class="cat">
               <b class="c_title">Esgrima</b>
-              <img id="sword" class="lupa" alt="lupa" src="./imgs/lupa.png" width="25" height="25">
+              <button onclick="get_products_by_category(`esgrima`)"><img id="sword" class="lupa" alt="lupa" src="./imgs/lupa.png" width="25" height="25">
+                </button>
             </div>
             <div id="cat8" class="cat">
               <b class="c_title">Rugby</b>
-              <img id="rugby" class="lupa" alt="lupa" src="./imgs/lupa.png" width="25" height="25">
+              <button onclick="get_products_by_category(`rugby`)"><img id="rugby" class="lupa" alt="lupa" src="./imgs/lupa.png" width="25" height="25">
+                </button>
             </div>
           </div>
         </div>
@@ -91,10 +100,11 @@
             <button id="responsive" class="footer_icons" onclick="testSpeech(this)" aria-label="voice commands"><img src="./imgs/speaking_icon.webp" alt="voice commands"></button>
         </div>
         </footer>
-        <script type="application/javascript" src="./scripts/client.js"></script>
+      <script type="application/javascript" src="./scripts/client.js"></script>
       <script type="application/javascript" src="./scripts/movements.js"></script>
-        <script type="application/javascript" src="./scripts/index.js"></script>
-        <script type="application/javascript" src="./scripts/shopping_cart.js"></script>
-        <script type="application/javascript" src="./scripts/voice_commands.js"></script>
+      <!-- <script type="application/javascript" src="./scripts/shopping_cart.js"></script> -->
+      <script type="application/javascript" src="./scripts/voice_commands.js"></script>
+      <!-- <script type="application/javascript" src="./scripts/searching.js"></script> -->
+
     </body>
 </html>

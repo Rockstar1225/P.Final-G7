@@ -31,7 +31,7 @@ function testSpeech(button) {
     button.disabled = true;
     
     
-    if (window.location.href === "http://localhost:3000/"){
+    if (window.location.href === "http://localhost:3000/client/index.html"){
         let categories = document.querySelectorAll(".c_title");
         categories.forEach(element =>{
             let str = 'ir a ';
