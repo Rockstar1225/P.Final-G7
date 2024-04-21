@@ -4,6 +4,7 @@ socket.on('retProdSport', (data) => {
     console.log(`Received seekProds event with data: ${data}`);
     // Change window location with query parameters
     data.push("");
+    data.push("");
     // redirect to search page
     window.location.href = `/client/client_busqueda.html?data=${JSON.stringify(data)}`;
 
@@ -24,6 +25,32 @@ function load_sports() {
     if (data === null){
         return ;
     }
+    let order_type = data.pop();
+    if (order_type === "Precio (Menor a mayor)"){
+        data.sort(function (a, b) {
+            if (a.price == b.price)
+                return 0;
+            if (a.price < b.price)
+                return -1;
+            if (a.price > b.price)
+                return 1;
+        });
+        let order = document.querySelector("#s_order");
+        order.value = "p_up";
+    }
+    if (order_type === "Precio (Mayor a menor)") {
+        data.sort(function (a, b) {
+            if (a.price == b.price)
+                return 0;
+            if (a.price < b.price)
+                return 1;
+            if (a.price > b.price)
+                return -1;
+        });
+        let order = document.querySelector("#s_order");
+        order.value = "p_down";
+    }
+    
     let search_bar = data.pop();
     document.querySelector("#search_p").value = search_bar;
     // Use the extracted data
@@ -66,9 +93,10 @@ function search_sport() {
 socket.on('retProd', (data) => {
     console.log(`Received seekProds event with data: ${data}`);
     // Change window location with query parameters
-    let data_obj = [data]
-    data_obj.push(document.querySelector("#search_p").value);
-    window.location.href = `/client/client_busqueda.html?data=${JSON.stringify(data_obj)}`;
+    data.push(document.querySelector("#search_p").value);
+    let order = document.querySelector("#s_order");
+    data.push(order.options[order.selectedIndex].text)
+    window.location.href = `/client/client_busqueda.html?data=${JSON.stringify(data)}`;
 
 });
 

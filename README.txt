@@ -16,37 +16,72 @@ package-lock.json y package.json.
 5. Con google chrome en el ordenador o un móvil enchufado al ordenador acceder a: "http://localhost:3000/client/index.html".
 6. A continuación aparecera la pantalla principal de la aplicación.
 
-Funcionalidades:
+funcionalidades:
+    añadir*:
+        Esta función se realiza buscando un producto, y luego 
+        dando click al botón de más informaciòn y luego cliquear el icóno del carrito.
+
+    eliminar*:
+        p
+    Marcar como Favorito*: 
+        Esta función se realiza buscando un producto, y luego 
+        dando click al botón de más informaciòn y luego cliquear el icóno de favoritos.
+
+    Ordenar*:
+        Para Ordenar los productos el usuario tiene que dirigirse a la página de busqueda.
+        Ahi busca un producto (ej: "zapatos"). Y por defecto se ordena con precio de 
+        mayor a menor. Si el usuario desea cambiarlo puede ir al menu desplegable 
+        y seleccionar entre las opciones de orden.
+
+    Notificación:
+        Para tener la notificación de compra se utiliza un gesto para avisar al 
+        que tiene que ejecutar la compra.
+
+    * Por cuestiones de tiempo, las funcionalidades de arriba no se han 
+    podido implementar de forma úbicua.
+
+
+
+
+Funcionalidades addicionales:
+
+    Gestos:
+    Los gestos que tenemos en el movil son los siguientes.
+    1. ir a carrito: se hace moviendo el movil hacia adelante.
+    2. ir a perfil: se hace moviendo el movil hacia la izquierda.
+    3. ir a busqueda: se hace moviendo el movil hacia la derecha.
+    3. ir a categorias: se hace moviendo el movil hacia atras.
 
 
 
 
 
-Comandos de voz y texto a voz con Web Speech API (SpeechGrammar y SpeechSynthesis respectivamente)*:
-El primer paso para usar los comandos de voz es visualizar la lista de comandos. 
-Para esto se debe hacer click en el botón con el signo de interogación. Al cliquear,
-se mostraran los comandos disponibles y también habrá una voz que explique los comandos.
-La mayoría de comandos usan una gramática, sin embargo hay unos comandos especiales en la página de login
-que no la utilizan. Para empezar a reconocer un comando se debe pulsar en el botón cuyo icóno es una persona
-hablando. Dicho botón se pondrá rojo y entonces el usuario deberá decir en voz alta el comando. 
-Si funciona el ejecutará y el botón volverá a su color original. Si el comando no es
-el correcto el botón volverá a su color original y el estado quedará igual. 
 
-En la página del login hay dos comandos especiales para dictar el nombre de usuario y la contraseña. 
-Diciendo usuario ...todo lo que se diga despues quedará guardado en el campo de usuario.
-Lo mismo pasa al decir contraseña ... .
+    Comandos de voz y texto a voz con Web Speech API (SpeechGrammar y SpeechSynthesis respectivamente)*:
+    El primer paso para usar los comandos de voz es visualizar la lista de comandos. 
+    Para esto se debe hacer click en el botón con el signo de interogación. Al cliquear,
+    se mostraran los comandos disponibles y también habrá una voz que explique los comandos.
+    La mayoría de comandos usan una gramática, sin embargo hay unos comandos especiales en la página de login
+    que no la utilizan. Para empezar a reconocer un comando se debe pulsar en el botón cuyo icóno es una persona
+    hablando. Dicho botón se pondrá rojo y entonces el usuario deberá decir en voz alta el comando. 
+    Si funciona el ejecutará y el botón volverá a su color original. Si el comando no es
+    el correcto el botón volverá a su color original y el estado quedará igual. 
 
-* Si se ejecuta desde chromium en Linux se debera usar los siguientes comandos para que funcione el SpeechSynthesis:
-sudo apt-get install espeak;
-chromium-browser --enable-speech-dispatcher;
+    En la página del login hay dos comandos especiales para dictar el nombre de usuario y la contraseña. 
+    Diciendo usuario ...todo lo que se diga despues quedará guardado en el campo de usuario.
+    Lo mismo pasa al decir contraseña ... .
+
+    * Si se ejecuta desde chromium en Linux se debera usar los siguientes comandos para que funcione el SpeechSynthesis:
+    sudo apt-get install espeak;
+    chromium-browser --enable-speech-dispatcher;
 
 
-Busqueda de productos:
-La busqueda se puede hacer de dos maneras. La primera con todos los productos 
-de una categoría y la segunda con un producto singular. Para hacer la primera, 
-simplemente hay que hacer click en la categoría. 
-Para realizar la busqueda por producto el usuario debe dirigirse a la página 
-de busqueda usando el comando: "ir a busqueda". Ahí el usuario puede buscar un
-producto usando el buscador y la lupa. Cabe destacar que solo se devolverán
-productos que tengan el mismo nombre que el campo de busqueda.  
+    Busqueda de productos:
+    La busqueda se puede hacer de dos maneras. La primera con todos los productos 
+    de una categoría y la segunda con un producto singular. Para hacer la primera, 
+    simplemente hay que hacer click en la categoría. 
+    Para realizar la busqueda por producto el usuario debe dirigirse a la página 
+    de busqueda usando el comando: "ir a busqueda". Ahí el usuario puede buscar un
+    producto usando el buscador y la lupa. Cabe destacar que solo se devolverán
+    productos que tengan el mismo nombre que el campo de busqueda.  
 

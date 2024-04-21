@@ -60,12 +60,13 @@ class database {
   // Localizar un producto por su nombre.
   // retorna el producto vacío si no lo encuentra.
   locateProd(name){
+    let res = [];
     for (const prod of this.database.productos) {
       if (prod["name"] === name){
-        return prod;
+        res.push(prod);
       }
     }
-    return {}
+    return res;
   }
 
   // Retornar todos los productos de la base de datos
