@@ -1,3 +1,5 @@
+const socket = io();
+
 // parte de deporte
 // Listen for the 'seekProds' event on the socket
 socket.on('retProdSport', (data) => {
