@@ -4,6 +4,7 @@ let global_user = "";
 let shopping_cart;
 window.onload = getUser();
 
+
 //-----SECCIÓN BÚSQUEDA-MENÚS---------------
 function logged(){
     if (sesion == 0){ 
@@ -35,7 +36,7 @@ function setUser(){
       socket.emit("fabSwitchUser",global_user);
       socket.emit("shoppingCartSwitchUser",global_user);
       socket.emit("shoppingCartGetProds", shopping_cart);
-      window.location.href = "./index.html";
+      alert("Inicio de sesión realizado");
     } else {
       console.log("Usuario Inválido!!");
     } 
@@ -97,10 +98,10 @@ function settingsCat(id){
 }
 
 function getUser(){
-  if (checkUser()){
     socket.emit("shoppingCartGetUser", global_user);
+    console.log(global_user);
     socket.emit("shoppingCartGetProds", shopping_cart);
-  }
+
 }
 
 function acceptPedido(){
