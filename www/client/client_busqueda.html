@@ -1,4 +1,5 @@
 <html>
+    <!--Menú de búsqueda.-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <head>
         <script type="text/javascript" src="/socket.io/socket.io.js"></script>
@@ -8,6 +9,7 @@
         <link rel='stylesheet' href='styles/search.css'>
     </head>
     <body onload=" load_sports()">
+        <!--Headers responsive.-->
         <header id="head_mobile">
             <h1 class="Title">Sportify</h1>
             <div class="images">
@@ -32,6 +34,7 @@
                 <button class="h_icons" onclick="logged()"><img src="imgs/profile_icon.webp" alt="profile" width="50" height="50"></button>
             </div>
         </header>
+        <!--Búsqueda con filtros de deportes. A partir de ahí puede ser sin filtro o según el precio.-->
         <h1>Búsqueda</h1>
         <div id="manual">
             <input id="search_p">
@@ -40,6 +43,7 @@
         </div>
         <div id="filt_command"><b>LISTA DE FILTROS</b><button id="b_filt" onclick="settingsCat('b_filt')">></button></div>
         <div id="filt">
+            <!--Opciones extra para la proxima version.-->
             <!-- <p id="price_range">Rango de precios: <input id="min_p"> a <input id="max_p"></p>
             <p id="fab_ft"> Opción favoritos: <select id="sel_fab" name="sel_fab">
                 <option value="mixed_fab">Favoritos y no favoritos</option>
@@ -71,8 +75,9 @@
         <!-- Dialog popup for the products-->
         <dialog id="product"> 
         </dialog>
-
+        <!--Botón para gestos.-->
         <div class="b_move"> <button id="movement"> Movimientos</button> </div>
+        <!--Footer responsive.-->
         <footer>
             <div class="footer_grid">
                 <a href="./index.html"><button class="footer_icons" aria-label="options"><img src="imgs/three_bars.webp" alt="options"></button></a>

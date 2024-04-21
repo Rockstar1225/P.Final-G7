@@ -1,4 +1,5 @@
 <html>
+    <!--Página del log in.-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <head>
         <script type="text/javascript" src="/socket.io/socket.io.js"></script>
@@ -6,6 +7,7 @@
         <link rel="stylesheet" href="styles/login.css">
     </head>
     <body>
+        <!--Headers responsive.-->
         <header id="head_mobile">
             <h1 class="Title">Sportify</h1>
             <div class="images">
@@ -30,7 +32,7 @@
                 <button class="h_icons" onclick="logged();"><img src="imgs/profile_icon.webp" alt="profile" width="50" height="50"></button>
             </div>
         </header>
-
+        <!--Pestaña del login. Introduce usuario y contraseña-->
         <div id="log_in">
             <p>Usuario:</p>
             <input id="init_user">
@@ -49,8 +51,10 @@
         
             </div>
         </div>
+        <!--Botón para gestos.-->
         <div class="b_move"> <button id="movement"> Movimientos</button> </div>
         <footer>
+            <!--Footer responsive.-->
             <div class="footer_grid">
                 <a href="./index.html"><button class="footer_icons" aria-label="options"><img src="imgs/three_bars.webp" alt="options"></button></a>
                 <button class="footer_icons" aria-label="shopping cart" onclick="chart_in()"><img src="./imgs/shopping_cart.webp" alt="shopping cart"></button>

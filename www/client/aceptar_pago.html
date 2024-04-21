@@ -1,3 +1,4 @@
+<!--Página de acepto de pago.-->
 <html>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <head>
@@ -7,6 +8,7 @@
         </head>
     
     <body>
+        <!--Headers responsive.-->
         <header id="head_mobile">
             <h1 class="Title">Sportify</h1>
             <div class="images">
@@ -31,6 +33,7 @@
                 <button class="h_icons" onclick="logged()"><img src="imgs/profile_icon.webp" alt="profile" width="50" height="50"></button>
             </div>
         </header>
+        <!--Pasos de pago. acept_p(1º, para aceptar el pago) y aceptado (2º, para volver al inicio).-->
         <div id="acept_p">
             <p>¿Aceptas el pago (Contesta S(Sí)/N(No))?</p>
             <input id="resp_not_mov"><button class="b_accept" onclick="decision()">Ok</button>
@@ -39,12 +42,14 @@
             <p>Pago aceptado, muchas gracias por comprar.</p>
             <button class="b_accept" id="end_b" onclick="backtoMenu()"> Ok</button>
         </div>
+        <!--Guía de gestos. Aquí no hay botón de movimientos-->
         <div id="no_touch">
             <h2>Modo sin manos</h2>
             <p>Para continuar -> Gire derecha</p>
             <p>Para volver (con o sin pagar) -> Gire a la izquierda</p>
         </div>
         <footer>
+            <!--Footer para móviles.-->
             <div class="footer_grid">
                 <a href="./index.html"><button class="footer_icons" aria-label="options"><img src="imgs/three_bars.webp" alt="options"></button></a>
                 <button class="footer_icons" aria-label="shopping cart" onclick="chart_in()"><img src="./imgs/shopping_cart.webp" alt="shopping cart"></button>

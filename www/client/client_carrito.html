@@ -1,4 +1,5 @@
 <html>
+    <!--Página del carrito.-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <head>
         <script type="text/javascript" src="/socket.io/socket.io.js"></script>
@@ -7,6 +8,7 @@
         <link rel='stylesheet' href='styles/style.css'>
         <link rel='stylesheet' href='styles/cart.css'>
     </head>
+    <!--Headers responsive.-->
     <body onload="updateCartData();">
         <header id="head_mobile">
             <h1 class="Title">Sportify</h1>
@@ -32,7 +34,7 @@
                 <button class="h_icons" onclick="logged()"><img src="imgs/profile_icon.webp" alt="profile" width="50" height="50"></button>
             </div>
         </header>
-
+        <!--Lista de la compra. Se actualiza  (num. productos y precio total) mediante JS.-->
         <h1 class="Title">Datos de la compra</h1>
         <div id="list">
             <h2>Lista de compra</h2>
@@ -49,8 +51,10 @@
         
             </div>
         </div>
+        <!--Botón para gestos.-->
         <div class="b_move"> <button id="movement"> Movimientos</button> </div>
         <footer>
+            <!--Footer responsive.-->
             <div class="footer_grid">
                 <a href="./index.html"><button class="footer_icons" aria-label="options"><img src="imgs/three_bars.webp" alt="options"></button></a>
                 <button class="footer_icons" aria-label="shopping cart" onclick="chart_in()"><img src="./imgs/shopping_cart.webp" alt="shopping cart"></button>

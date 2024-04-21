@@ -15,6 +15,7 @@ function movimientos(event){
         logged();
     }
     if (angulo_actual.gamma >= 50){ // Derecha
+        alert("Por motivos de dificultad de ajuste entre movimientos y voz, este movimiento no estará disponible hasta la siguiente actualización. Lamentamos las molestias.")
         window.location.href = "./client_busqueda.html";
     }
     
