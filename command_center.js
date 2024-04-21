@@ -3,6 +3,7 @@ const io = require('socket.io-client');
 const fabs = require('./fabs');
 const cart = require('./shopping_cart');
 const store = require('./store');
+const { userInfo } = require('os');
 const socket = io("http://localhost:3000");
 
 class command_center{
@@ -67,18 +68,20 @@ class command_center{
     }
 
     getFabProds(){
-        this.updateUsers();
-        this.list_fab_prods = []; 
+        this.list_fab_prods = [];
+        let user = this.fabs_handler.user;
+        console.log("Users fabs:",this.list_users_fabs); 
         for (const user of this.list_users_fabs) {
             this.fabs_handler.setUser(user); 
             for (const prod of this.fabs_handler.fabs_data.fabs){
                 this.list_fab_prods.push({"user":user,"prod": prod});
             }
         }
+        this.fabs_handler.setUser(user);
     }
 
     getCartProds(){
-        this.updateUsers();
+        let user = this.fabs_handler.user;
         this.list_cart_prods = [];
         for (const user of this.list_users_cart) {
             this.cart_handler.setUser(user);
@@ -86,6 +89,7 @@ class command_center{
                 this.list_cart_prods.push({"user":user,"prod": prod});
             }
         }
+        this.cart_handler.setUser(user);
     }
 
 

@@ -14,6 +14,7 @@ class fabourites {
     
   // Setear un usuario
   setUser(user){
+    console.log("Se ha cambiado de usuario: "+user);
     this.user = user;
     if (fs.existsSync(this.ruta+user+".json") === false){
         this.saveData();
