@@ -1,6 +1,6 @@
 .Title{
     text-align: center;
-    margin-top: 2px;
+    margin-top: 10px;
 }
 
 #list{
@@ -10,7 +10,35 @@
     margin-left: 20%;
     margin-right: 20%;
     padding: 3px;
+    margin-top: 20px;
+    max-height: 60%;
+    display: flex;
+    flex-flow: column nowrap;
 }
+    #list > h2 {
+        flex: 1 1 auto;
+        margin-top: 10px;
+    }
+    #products {
+        flex: 1 1 auto;
+        margin: 20px 15px;
+        overflow: auto;
+        display: flex;
+        flex-flow: column nowrap; 
+
+    }
+        #products > div {
+            flex: 1 1 auto;
+            display: flex;
+            flex-flow: row nowrap;
+            padding: 15px 25px; 
+            border: solid black 2px;
+            background-color: orange;
+            margin: 10px;
+            justify-content: space-between;
+            text-align: left;
+        }
+
 
 #accept_purch{
     padding: 2px;
@@ -24,4 +52,6 @@
 #price, #accept_purch{
     font-size: large;
 }
+
+
 
