@@ -39,7 +39,8 @@ class fabourites {
 
   // Añadir un nuevo producto a favoritos
   // nombre: el nombre del objeto.
-  addProd(nombre) { 
+  addProd(nombre) {
+    console.log("Usuario para añadir: "+this.user); 
     socket.emit("getProd",nombre);
     socket.on("retProd",(prod) => {
         console.log("Producto recibido",prod);

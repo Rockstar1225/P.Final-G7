@@ -67,6 +67,7 @@ io.on('connection', (socket) => {
   socket.on("fabAddProd",function(name){
     fabs_handler.addProd(name);
     console.log("Producto añadido en fabs!!");
+    console.log("Usuario insertado: "+fabs_handler.user);
   })
 
   socket.on("fabRemProd",function(name){
