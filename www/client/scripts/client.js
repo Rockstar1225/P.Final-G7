@@ -1,8 +1,7 @@
-let socket = io();
+let socket = io("http://localhost:3000");
 let sesion;
-let global_user = "";
 let shopping_cart;
-window.onload = getUser();
+getUser();
 
 
 //-----SECCIÓN BÚSQUEDA-MENÚS---------------
@@ -27,32 +26,14 @@ function chart_in(){
 
 function setUser(){
     let user = document.querySelector("#init_user").value; 
-    global_user = user;   
-    sesion = 1;
-
-    // mandar al servicio de faboritos que se cree el usuario en favoritos
-    if (checkUser() === true){
-      console.log("User local: "+global_user);
-      socket.emit("fabSwitchUser",global_user);
-      socket.emit("shoppingCartSwitchUser",global_user);
-      socket.emit("shoppingCartGetProds", shopping_cart);
-      alert("Inicio de sesión realizado");
-    } else {
-      console.log("Usuario Inválido!!");
-    } 
-    
+    sesion = 1; // mandar al servicio de faboritos que se cree el usuario en favoritos
+    console.log("User local: "+user);
+    socket.emit("fabSwitchUser",user);
+    socket.emit("shoppingCartSwitchUser",user);
+    alert("Inicio de sesión realizado");
 }
 
-function checkUser(){
-  if (global_user != ""){
-    sesion = 1;
-    return true;
-  }
-  else{
-    sesion = 0;
-    return false;
-  }
-}
+
 
 //-----SECCIÓN AJUSTES DE USUARIO/ FILTROS DE BÚSQUEDA------------
 function init_settings(){
@@ -98,47 +79,28 @@ function settingsCat(id){
 }
 
 function getUser(){
-    socket.emit("shoppingCartGetUser", global_user);
-    console.log(global_user);
-    socket.emit("shoppingCartGetProds", shopping_cart);
+  socket.emit('shoppingCartGetUser');
+  socket.on('retShoppingCartGetUser',(resultado) =>{
+    console.log(resultado);
+      if (resultado != ""){
+        sesion = 1;
+      }
+      else{ sesion = 0;}
+  });
 
 }
 
 function acceptPedido(){
-  if (global_user == ""){
+  if (sesion == 0){
     alert("No hay usuario indicado");
   }
-  if (shopping_cart.cart.length == 0){
-    alert("No hay productos");
-  }
-  socket.emit("RequestConf", "start");
-  alert("Pedido enviado.");
-  let proceso = true;
-  while(proceso){
-    let lista;
-    socket.emit("GetDataPedido", lista);
-    if (lista[0] != true){
-      alert("Error al configurar el pedido. Abort");
-      socket.emit("RequestConf", "end");
-      proceso = false;
+  socket.emit("shoppingCartGetProds");
+  socket.on('retShoppingCartGetProds', (resultado) => {
+    shopping_cart = resultado;
+    if (shopping_cart.cart.length == 0){
+      alert("No hay productos");
     }
-    else {
-      let t_actual = new Date();
-      if (t_actual.getSeconds() - lista[1].getSeconds() >= 120){
-        alert("Pedido alcanzado");
-        socket.emit("RequestConf", "end");
-        let longitud = shopping_cart.cart.length;
-        for (let i = 0; i < longitud; i++){}
-
-      }
-    }
-  }
-
-}
-function updatetableFabs(){}
-function showCart(){
-}
-function updateUser(){
-
+});
+  window.location.href="./aceptar_pago.html";
 }
 

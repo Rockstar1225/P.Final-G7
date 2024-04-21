@@ -2,12 +2,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <head>
         <script type="text/javascript" src="/socket.io/socket.io.js"></script>
-        <script type="application/javascript" src="./scripts/client.js"></script>
-        <script type="text/javascript" src="./scripts/cart.js"></script>
         <link rel='stylesheet' href='styles/style.css'>
-        <link rel='stylesheet' href='styles/cart.css'>
-    </head>
-    <body onload="updateCartData();">
+        </head>
+    
+    <body>
         <header id="head_mobile">
             <h1 class="Title">Sportify</h1>
             <div class="images">
@@ -32,24 +30,14 @@
                 <button class="h_icons" onclick="logged()"><img src="imgs/profile_icon.webp" alt="profile" width="50" height="50"></button>
             </div>
         </header>
-
-        <h1 class="Title">Datos de la compra</h1>
-        <div id="list">
-            <h2>Lista de compra</h2>
-            <div id="products"></div>
-            <p id="price">Precio total:</p>
-            <button id="accept_purch" onclick="acceptPedido()">Aceptar compra</button>
+        <div id="acept_p">
+            <p>¿Aceptas el pago (Contesta S(Sí)/N(No))?</p>
+            <input id="resp_not_mov"><button class="b_accept" onclick="decision()">Ok</button>
         </div>
-
-        <!-- Tile window for voice commands -->
-        <div id="optionsWindow" class="tile-window">
-            <div class="tile-content">
-                <!-- Content of the tile window -->
-                <h2>Comandos de voz: </h2>
-        
-            </div>
+        <div id="aceptado">
+            <p>Pago aceptado, muchas gracias por comprar.</p>
+            <button class="b_accept" id="end_b" onclick="backtoMenu()"> Ok</button>
         </div>
-        <div class="b_move"> <button id="movement"> Movimientos</button> </div>
         <footer>
             <div class="footer_grid">
                 <a href="./index.html"><button class="footer_icons" aria-label="options"><img src="imgs/three_bars.webp" alt="options"></button></a>
@@ -59,7 +47,5 @@
                 <button class="footer_icons" onclick="testSpeech(this)" aria-label="voice commands"><img src="imgs/speaking_icon.webp" alt="voice commands"></button>
             </div>
         </footer>
-        <script type="application/javascript" src="./scripts/movements.js"></script>
-        <script type="application/javascript" src="./scripts/voice_commands.js"></script> 
+        <script type="application/javascript" src="./scripts/accept.js"></script>
     </body>
-</html>

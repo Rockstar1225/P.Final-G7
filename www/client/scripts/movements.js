@@ -1,25 +1,19 @@
-let angulo_inicial = {alpha: 0, beta: 90, gamma: 0};
 let angulo_actual;
 let touch_time = false;
 
 function movimientos(event){
     angulo_actual = {alpha: event.alpha, beta: event.beta, gamma: event.gamma};
-    console.log(angulo_actual.beta, angulo_actual.gamma, angulo_actual.alpha);
     if (angulo_actual.beta >= 110){
-        alert("op4");
         window.location.href = "./index.html";
     }
     if (angulo_actual.beta <= 50){
-        alert("op1");
         chart_in();
     }
 
     if (angulo_actual.gamma <= -50){
-        alert("op2");
         logged();
     }
     if (angulo_actual.gamma >= 50){
-        alert("op3");
         window.location.href = "./client_busqueda.html";
     }
     
