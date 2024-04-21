@@ -18,6 +18,9 @@ class shopping_cart {
     this.user = user;
     if (fs.existsSync(this.ruta+user+".json") === false){
         this.saveData();
+        this.shopping_cart = {
+          "cart": []
+        }
     } else {this.loadData();}
     
   }
@@ -60,7 +63,7 @@ class shopping_cart {
 
   // Quitar un producto del carrito
   remProd(name) {
-    
+    this.loadData(); 
     let index = this.shopping_cart.cart.findIndex((prod) => prod["name"] === name);
     if (index === -1){
         console.log("No se encontró elemento en el carrito para eliminar.");

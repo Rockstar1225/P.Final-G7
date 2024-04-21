@@ -23,7 +23,7 @@ class fabourites {
 
   // Guardar la base de datos en un archivo JSON
   saveData() {
-    let json = JSON.stringify({"fabs": []});
+    let json = JSON.stringify(this.fabs_data);
     // Guardar en el almacenamiento local del navegador
     fs.writeFileSync(this.ruta+this.user+".json",json,() => {
         console.log("Datos guardados de usuario: "+this.user);
