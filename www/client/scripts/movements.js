@@ -5,28 +5,23 @@ let touch_time = false;
 function movimientos(event){
     angulo_actual = {alpha: event.alpha, beta: event.beta, gamma: event.gamma};
     console.log(angulo_actual.beta, angulo_actual.gamma, angulo_actual.alpha);
-    if (angulo_actual.gamma <= -45){
-        alert("op2");
+    if (angulo_actual.beta >= 110){
+        alert("op4");
+        window.location.href = "./index.html";
+    }
+    if (angulo_actual.beta <= 50){
+        alert("op1");
         chart_in();
     }
-    if (angulo_actual.beta <= 45){
-        alert("op1");
+
+    if (angulo_actual.gamma <= -50){
+        alert("op2");
         logged();
     }
-    if (angulo_actual.gamma >= 45){
+    if (angulo_actual.gamma >= 50){
         alert("op3");
         window.location.href = "./client_busqueda.html";
     }
-    /*else if (dif_angulo_x > 45 && dif_angulo_y > 45 && Math.abs(dif_angulo_z) < 10){
-        console.log(dif_angulo_x, dif_angulo_y, dif_angulo_z);
-        alert("op2");
-        chart_in();
-    }
-    else if (dif_angulo_x < -45 && dif_angulo_y < -45 && Math.abs(dif_angulo_z) < 10){
-        console.log(dif_angulo_x, dif_angulo_y, dif_angulo_z);
-        alert("op3");
-        window.location.href = "./client_busqueda.html";
-    }*/
     
 }
 
