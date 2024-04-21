@@ -1,12 +1,18 @@
+
+// Función para actualizar los datos de producto
 function updateCartData(){
 
+    // Declaración de elementos principales del HTML
     let prods_div = document.getElementById("products");
     let price = document.getElementById("price"); 
 
+    // Obtener información sobre los productos del carrito grupal
     socket.emit("centerGetCart");
     socket.on("retCenterGetCart",(list)=> {
         prods_div.innerHTML = "";
         let total_price = 0;
+
+        // Generación automática de la estructura de los productos
         for (const prod of list){
             total_price += prod.prod.price;
             
@@ -21,6 +27,8 @@ function updateCartData(){
 
             prods_div.appendChild(elem);
         }
+
+        // Actualizar el precio final
         price.innerHTML += ` ${total_price} €`
     })
 }

@@ -1,19 +1,23 @@
+// Importación de módulos relevantes
 const fs = require('fs');
 const io = require('socket.io-client');
 
+// Conexión al servidor por medio del puerto 3000
 const socket = io("http://localhost:3000");
 
 
+// Clase que representa el carrito de productos
+// de cada usuario.
 class shopping_cart {
   
-  // Datos iniciales
+  // Rutas y atributos iniciales
   ruta = "./cart/";
   user = "";
   shopping_cart= {
     "cart": []
   };
  
-  // Setear un usuario
+  // Establecer el usuario gestionado
   setUser(user){
     this.user = user;
     if (fs.existsSync(this.ruta+user+".json") === false){
@@ -30,7 +34,8 @@ class shopping_cart {
   getUser(){
     return this.user;
   }
-  // Guardar la base de datos en un archivo JSON
+
+  // Guardar los productos de carrito de un usuario en un archivo JSON
   saveData() {
     let json = JSON.stringify(this.shopping_cart);
     // Guardar en el almacenamiento local del navegador
@@ -39,7 +44,7 @@ class shopping_cart {
     }) 
   }
 
-  // Recuperar los favoritos desde el archivo JSON
+  // Recuperar el carrito desde el archivo JSON
   loadData() { 
     let ruta = this.ruta+this.user+".json";
     let data = fs.readFileSync(ruta); 
@@ -95,5 +100,7 @@ class shopping_cart {
   }
 }
 
+
+// Atributo principal del módulo
 exports.handler = new shopping_cart();
 

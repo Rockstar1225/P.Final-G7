@@ -1,15 +1,18 @@
+// Importación de módulos relevantes
 const fs = require("fs");
 
+// Clase que representará el gestionador
+// de la base de datos.
 class database {
-  // Datos iniciales
+  // Ruta inicial y contenido por defecto
   ruta = "";
-
   database = {
     "productos": [
       { "name": "Gorro", "quantity": 2, "sport": "natación", "price":10.3, "desc": "Gorro de goma perfecto para natación."}
     ]
   };
   
+  // Constructor que carga el archivo de base de datos
   constructor(rute){
     this.ruta = rute; 
     if (fs.existsSync(this.ruta)){
@@ -75,4 +78,5 @@ class database {
   }
 }
 
+// Atributo principal del módulo
 exports.store = new database("./store.json");

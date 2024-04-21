@@ -1,3 +1,4 @@
+// Declaración de módulos principales
 const fs = require('fs');
 const io = require('socket.io-client');
 const fabs = require('./fabs');
@@ -6,7 +7,11 @@ const store = require('./store');
 const { userInfo } = require('os');
 const socket = io("http://localhost:3000");
 
+// Clase que representará toda la gestión en el panel de 
+// control del lado del servidor
 class command_center{
+
+    // Rutas y atributos principales
     ruta_fabs = "./fabs/";
     ruta_cart = "./cart/";
     list_users_cart = [];
@@ -22,11 +27,13 @@ class command_center{
         this.updateUsers();
     }
 
+    // Método para monitorizar los productos cada 3 segundos
     startMonitoring(){
         this.monitoring_intervalId = setInterval(() => {this.updateUsers();},3000);
         console.log("Monitoreo activado!!");
     }
 
+    // Método para detener la monitorización
     stopMonitoring(){
         setTimeout(() => {
             clearInterval(this.monitoring_intervalId);
@@ -34,6 +41,7 @@ class command_center{
         }, 10000);
     }
 
+    // Método que actualiza el nombre de los usuarios registrados por el sistema.
     updateUsers(){
         this.list_users_cart = [];
         this.list_users_fabs = [];
@@ -60,13 +68,18 @@ class command_center{
         })
     }
 
+    // Getters para las listas de usuarios
+    //------------------------------------
     getFabUsers(){
         return this.list_users_fabs;
     }
     getCartUsers(){
         return this.list_users_cart;
     }
+    //------------------------------------
+    
 
+    // Método que obtiene todos los productos añadidos a faboritos
     getFabProds(){
         this.list_fab_prods = [];
         let user = this.fabs_handler.user;
@@ -80,6 +93,7 @@ class command_center{
         this.fabs_handler.setUser(user);
     }
 
+    // Método que obtiene los productos añadidos al carrito
     getCartProds(){
         let user = this.fabs_handler.user;
         this.list_cart_prods = [];
@@ -96,4 +110,5 @@ class command_center{
 
 }
 
+// Atributo principal del módulo
 exports.handler = new command_center();

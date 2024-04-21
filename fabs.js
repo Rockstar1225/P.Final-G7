@@ -1,18 +1,22 @@
+// Importación de módulos requeridos
 const fs = require('fs');
 const io = require('socket.io-client');
 
+// conexión al servidor por medio del puerto anterior
 const socket = io("http://localhost:3000");
 
+// Clase representativa de la gestión de faboritos
+// para cada usuario registrado.
 class fabourites {
   
-  // Datos iniciales
+  // Atributos y rutas relevantes
   ruta = "./fabs/";
   user = "";
   fabs_data = {
     "fabs": []
   };
     
-  // Setear un usuario
+  // Cambiar el usuario que se está manejando
   setUser(user){ 
     this.user = user;
     if (fs.existsSync(this.ruta+user+".json") === false){
@@ -21,7 +25,7 @@ class fabourites {
     
   }
 
-  // Guardar la base de datos en un archivo JSON
+  // Guardar los datos de productos favoritos gestionados en un archivo JSON
   saveData() {
     let json = JSON.stringify(this.fabs_data);
     // Guardar en el almacenamiento local del navegador
@@ -30,7 +34,7 @@ class fabourites {
     }) 
   }
 
-  // Recuperar los favoritos desde el archivo JSON
+  // Recuperar los productos favoritos desde el archivo JSON
   loadData() { 
     let ruta = this.ruta+this.user+".json";
     let data = fs.readFileSync(ruta); 
@@ -38,7 +42,6 @@ class fabourites {
   }
 
   // Añadir un nuevo producto a favoritos
-  // nombre: el nombre del objeto.
   addProd(nombre) {
     console.log("Usuario para añadir: "+this.user); 
     socket.emit("getProd",nombre);
@@ -54,14 +57,12 @@ class fabourites {
   }
 
   // Quitar un producto de favoritos
-  remProd(name) {
-    
+  remProd(name) {    
     let index = this.fabs_data.fabs.findIndex((prod) => prod["name"] === name);
     if (index === -1){
         console.log("No se encontró elemento en favoritos para eliminar.");
         return
     }
-
     this.fabs_data.fabs.splice(index,1);
     this.saveData();
   } 
@@ -88,4 +89,5 @@ class fabourites {
   }
 }
 
+// Atributo principal del módulo
 exports.fabs_handler = new fabourites();

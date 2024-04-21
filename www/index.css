@@ -6,7 +6,7 @@ b {
   font-size: x-large;
 }
 
-
+/* Estilo del div dinámico */
 .table {
   display: flex;
   flex-flow: column nowrap;
@@ -17,6 +17,7 @@ b {
   justify-content: center; 
 }
 
+/* Estilo para la tabla en sí*/
 table { 
   flex: 1 1 auto; 
   width: 100%;
@@ -32,13 +33,16 @@ th, td {
 }
 
 
+/* Diseño del footer de la página*/
 .footer_grid {
   justify-content: center;
   gap: 20px; 
 
 }
 
-@media only screen and (max-width: 800px){
+
+/* Sección de estilo para móbiles */
+@media only screen and (max-width: 1037px){
     table {
       display: flex; 
       flex-flow: row wrap;
