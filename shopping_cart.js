@@ -48,7 +48,7 @@ class shopping_cart {
   // nombre: el nombre del objeto.
   addProd(nombre) { 
     socket.emit("getProd",nombre);
-    socket.on("retProd",function(prod){
+    socket.on("retProd",(prod) => {
         if (prod != {}){
             this.shopping_cart.cart.push(prod);
             this.saveData();
