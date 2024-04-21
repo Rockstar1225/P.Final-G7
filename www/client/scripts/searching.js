@@ -113,6 +113,7 @@ function displayProduct(element){
    let add_Fabs_img = document.createElement("img");
    let add_cart_img = document.createElement("img");
 
+   // adding the content to the dialog
    title.innerText = `${element.name}`;
    descr.innerText = `Description: ${element.desc}`;
    category.innerText = `Category of product: ${element.sport}`;
@@ -125,31 +126,48 @@ function displayProduct(element){
    add_cart_img.style.height = "50px";
    add_remove_div.style.width = "100%";
    add_remove_div.style.height = "auto";
-   add_remove_div.style.justifyContent = "space-between";
-    // add product to favorites and add product to shopping cart
-   add_Fabs_img.addEventListener("click",(ev) => {
-        socket.emit("fabAddProd",element.name);
-   })
-   add_cart_img.addEventListener("click",(ev)=>{
-        socket.emit("shoppingCartAddProd",element.name);
-   })
+   add_remove_div.style.justifyContent = "space-between"; 
 
+   // Buttons that change for adding o removing products to fabs
    socket.emit("centerGetFabs");
    socket.on("retCenterGetFabs",(data) => {
-    if (!data.includes(element)){
-       add_Fabs_img.style.backgroundColor = "red"; 
+    let data_prods = Array.from(data,(up) => {return JSON.stringify(up.prod)});
+    
+
+    if (data_prods.includes(JSON.stringify(element))){
+       add_Fabs_img.style.backgroundColor = "red";
+       
+       // remove product from fabs.
+       add_Fabs_img.addEventListener("click",(ev) => {
+            socket.emit("fabRemProd",element.name);
+       }) 
     } else {
         add_Fabs_img.style.backgroundColor = "orange";
+        
+        // add product to fabs
+        add_Fabs_img.addEventListener("click",(ev) => {
+            socket.emit("fabAddProd",element.name);
+        })
     }
     add_Fabs_img.style.borderRadius = "50px";
    })
 
+   // Buttons that change for adding o removing products from the cart
    socket.emit("centerGetCart");
    socket.on("retCenterGetCart",(data) => {
-    if (!data.includes(element)){
-       add_cart_img.style.backgroundColor = "red"; 
+
+    let data_prods = Array.from(data,(up) => {return JSON.stringify(up.prod)});
+
+    if (data_prods.includes(JSON.stringify(element))){
+       add_cart_img.style.backgroundColor = "red";
+       add_cart_img.addEventListener("click",(ev)=>{
+            socket.emit("shoppingCartRemProd",element.name);
+       }) 
     } else {
         add_cart_img.style.backgroundColor = "orange";
+        add_cart_img.addEventListener("click",(ev)=>{
+            socket.emit("shoppingCartAddProd",element.name);
+        })
     }
     add_cart_img.style.borderRadius = "50px";
    })

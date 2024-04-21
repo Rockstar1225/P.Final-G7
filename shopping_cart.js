@@ -67,15 +67,14 @@ class shopping_cart {
   }
 
   // Quitar un producto del carrito
-  remProd(name) {
-    this.loadData(); 
+  remProd(name) { 
     let index = this.shopping_cart.cart.findIndex((prod) => prod["name"] === name);
     if (index === -1){
         console.log("No se encontró elemento en el carrito para eliminar.");
         return
     }
-
     this.shopping_cart.cart.splice(index,1);
+    this.saveData();
   } 
    
 
