@@ -1,7 +1,6 @@
 // category product search
 // Listen for the 'seekProds' event on the socket
 socket.on('retProdSport', (data) => {
-    console.log(`Received seekProds event with data: ${data}`);
     // Change window location with query parameters
     data.push("");
     data.push("");
@@ -12,7 +11,6 @@ socket.on('retProdSport', (data) => {
 
 // Function to emit the 'seekProds' event with the provided category
 function get_products_by_category(category) {
-    console.log(category);
     socket.emit('getProdSport', category);
 }
 
@@ -91,7 +89,7 @@ function search_sport() {
     socket.emit("getProd", input);
 }
 socket.on('retProd', (data) => {
-    console.log(`Received seekProds event with data: ${data}`);
+    
     // Change window location with query parameters
     data.push(document.querySelector("#search_p").value);
     let order = document.querySelector("#s_order");
@@ -132,7 +130,8 @@ function displayProduct(element){
    socket.emit("centerGetFabs");
    socket.on("retCenterGetFabs",(data) => {
     let data_prods = Array.from(data,(up) => {return JSON.stringify(up.prod)});
-    
+    console.log("Datos",data_prods);
+    console.log("elemento: ",element); 
 
     if (data_prods.includes(JSON.stringify(element))){
        add_Fabs_img.style.backgroundColor = "red";
@@ -156,10 +155,9 @@ function displayProduct(element){
    socket.emit("centerGetCart");
    socket.on("retCenterGetCart",(data) => {
 
-    let data_prods = Array.from(data,(up) => {return JSON.stringify(up.prod)});
-    console.log("Data:",data_prods);
-    console.log("Elemento: "+JSON.stringify(element));
-
+    let data_prods = Array.from(data,(up) => {return JSON.stringify(up.prod)}); 
+    console.log("Carrito", data_prods);
+    console.log("elemento: ",element); 
     if (data_prods.includes(JSON.stringify(element))){
        add_cart_img.style.backgroundColor = "red";
        add_cart_img.addEventListener("click",(ev)=>{

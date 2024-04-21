@@ -38,15 +38,13 @@ class fabourites {
   loadData() { 
     let ruta = this.ruta+this.user+".json";
     let data = fs.readFileSync(ruta); 
-    console.log("Datos de faboritos",JSON.parse(data));
     this.fabs_data = JSON.parse(data);
   }
 
   // Añadir un nuevo producto a favoritos
   addProd(nombre) { 
     socket.emit("getProd",nombre);
-    socket.on("retProd",(prod) => {
-        console.log("Producto recibido",prod);
+    socket.on("retProd",(prod) => { 
         if (prod){
             this.fabs_data.fabs.push(prod[0]);
             this.saveData();   
