@@ -15,6 +15,9 @@ app.use('/client', express.static(path.join(__dirname, 'www', 'client')));
 
 let clientSocket;
 
+let pedido = false;
+let tiempo = 0;
+
 io.on('connection', (socket) => {
   console.log(`socket connected ${socket.id}`); 
   let fabs_handler = fabs.fabs_handler;
@@ -129,6 +132,21 @@ io.on('connection', (socket) => {
     socket.emit("retCenterGetCartUsers", command_center_handler.getCartUsers()); 
   })
 
+  socket.on("RequestConf", function(part){
+    if (part == "start"){
+      pedido = true;
+      tiempo = new Date();
+    }
+    else if (part == "end"){
+      pedido = false;
+      tiempo = 0;
+    }
+  })
+
+  socket.on("GetDataPedido", function(){
+    let lista = [pedido, tiempo];
+    return lista;
+  })
 });
 server.listen(3000, () => {
   console.log("Server listening...");
