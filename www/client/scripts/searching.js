@@ -1,12 +1,10 @@
-
-
-// parte de deporte
+// category product search
 // Listen for the 'seekProds' event on the socket
 socket.on('retProdSport', (data) => {
     console.log(`Received seekProds event with data: ${data}`);
     // Change window location with query parameters
     data.push("");
-    
+    // redirect to search page
     window.location.href = `/client/client_busqueda.html?data=${JSON.stringify(data)}`;
 
 });
@@ -23,6 +21,9 @@ function load_sports() {
     const urlParams = new URLSearchParams(window.location.search);
     const dataString = urlParams.get('data');
     let data = JSON.parse(dataString);
+    if (data === null){
+        return ;
+    }
     let search_bar = data.pop();
     document.querySelector("#search_p").value = search_bar;
     // Use the extracted data
@@ -45,14 +46,16 @@ function load_sports() {
             console.log("Displaying Prod!!");
             displayProduct(element);
         });
+        // append to html
         product_div.appendChild(product);
         product_div.appendChild(button);
         parent_div.appendChild(product_div);
     });
+    // remove excess clutter from URL
     history.replaceState({}, document.title, "/client/client_busqueda.html");
 }
 
-
+// individual product search
 function search_sport() {
     let input = document.querySelector("#search_p").value;
     if (input === ""){
@@ -69,7 +72,9 @@ socket.on('retProd', (data) => {
 
 });
 
+// displaying the product
 function displayProduct(element){
+    // configuration of style for display of products
    let modal = document.getElementById("product");
 
    let title = document.createElement("h1");
@@ -93,6 +98,7 @@ function displayProduct(element){
    add_remove_div.style.width = "100%";
    add_remove_div.style.height = "auto";
    add_remove_div.style.justifyContent = "space-between";
+    // add product to favorites and add product to shopping cart
    add_Fabs_img.addEventListener("click",(ev) => {
         socket.emit("fabAddProd",element.name);
    })
@@ -121,7 +127,7 @@ function displayProduct(element){
    })
 
 
-
+    // diplaying the product info    
    modal.innerHTML = "";
    add_remove_div.innerHTML = "";
 
@@ -132,9 +138,9 @@ function displayProduct(element){
    modal.appendChild(descr);
    modal.appendChild(price);
    modal.appendChild(add_remove_div);
-
+    // showing product info   
    modal.showModal();
-
+    // removing info after 10 seconds    
    let interval = setTimeout(() => {
     modal.close();
    },10000);

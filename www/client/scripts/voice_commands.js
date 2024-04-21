@@ -1,7 +1,9 @@
+// grammar variables
 var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
 var SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList;
 var SpeechRecognitionEvent = SpeechRecognitionEvent || webkitSpeechRecognitionEvent;
 
+// grammar phrases
 var phrases = [
     'ir a búsqueda',
     'ir a carrito',
@@ -10,7 +12,7 @@ var phrases = [
     'ir a perfil',
     'ir a inicio'
 ];
-
+// redirects corresponding to the phrases above
 var redirects = [
     '/client/client_busqueda.html',
     '/client/client_carrito.html',
@@ -21,16 +23,15 @@ var redirects = [
 ];
 
 
-var activate_button_tablet = document.querySelector('#voice_commands');
-var activate_button_phone = document.querySelector('#footer_voice');
+// var for creating the tile content
 var tile_content_created = false;
 // for text-to-speeech
 const synth = window.speechSynthesis;
 
+// speech function
 function testSpeech(button) {
     button.disabled = true;
-    
-    
+    // insert additional phrases if in category page
     if (window.location.href === "http://localhost:3000/client/index.html"){
         let categories = document.querySelectorAll(".c_title");
         categories.forEach(element =>{
@@ -39,14 +40,14 @@ function testSpeech(button) {
             phrases.push(str)
 
         })
-        console.log(phrases);
     }
+    // will be used to write username and password it user is in login page
     let in_login_html = false;
     if (window.location.href === "http://localhost:3000/client/client_login.html"){
         in_login_html = true;
     }
         
-
+    // gramar variables
     var grammar = '#JSGF V1.0; grammar phrase; public <phrase> = ' + phrases.join(' | ') + ';';
     var recognition = new SpeechRecognition();
     var speechRecognitionList = new SpeechGrammarList();
@@ -55,11 +56,12 @@ function testSpeech(button) {
     recognition.lang = 'es-ES';
     recognition.interimResults = false;
     recognition.maxAlternatives = 1;
-
+    
+    // recognition start
     recognition.start();
-
+    // recognition result
     recognition.onresult = function (event) {
-
+        // handle redirects
         let speechResult = event.results[0][0].transcript.toLowerCase();
         if (phrases.includes(speechResult)) {
             // comandos con gramatica
@@ -71,7 +73,7 @@ function testSpeech(button) {
             window.location.href = `${redirects[index]}`;
             }
         } else {
-            // comandos sin gramatica
+            // commands without grammar
             if (speechResult.includes("usuario") && in_login_html === true){
                 let user_str = speechResult.replace("usuario", "");
                 let username_object = document.querySelector("#init_user");
@@ -86,7 +88,7 @@ function testSpeech(button) {
         }
         console.log('Confidence: ' + event.results[0][0].confidence);
     }
-
+    // rest of events
     recognition.onspeechend = function () {
         recognition.stop();
         button.disabled = false;
@@ -105,7 +107,7 @@ function testSpeech(button) {
         //Fired when the user agent has finished capturing audio.
         console.log('SpeechRecognition.onaudioend');
     }
-
+    // change button background to green
     recognition.onend = function (event) {
         //Fired when the speech recognition service has disconnected.
         button.style.backgroundColor = "#007bff";
@@ -131,12 +133,14 @@ function testSpeech(button) {
         //Fired when sound that is recognised by the speech recognition service as speech has been detected.
         console.log('SpeechRecognition.onspeechstart');
     }
+    // change button background to red
     recognition.onstart = function (event) {
         button.style.backgroundColor = "#FF1D25";
         //Fired when the speech recognition service has begun listening to incoming audio with intent to recognize grammars associated with the current SpeechRecognition.
         console.log('SpeechRecognition.onstart');
     }
 }
+// speech-to-text function and tile dispay
 function toggle_options(button) {
     
     // speech function
@@ -163,9 +167,11 @@ function toggle_options(button) {
         'ir a login',
         'ir a producto',
         'ir a perfil',
-        'ir a inicio'
+        'ir a inicio',
+        "COMANDOS EXTRA EN PÁGINA CATEGORIAS: ir a 'X'. X=deporte"
     ];
     
+    // create and fill the tile if it hasn't already been done
     if (!tile_content_created) {
         let tile_content = document.querySelector(".tile-content");
         phrases.forEach(element => {
@@ -176,7 +182,7 @@ function toggle_options(button) {
         });
         tile_content_created = true;
     }
-
+    // logic for the position of the tile
     let optionsWindow = document.getElementById('optionsWindow');
     // Calculate the position of the button
     let buttonRect = button.getBoundingClientRect();
@@ -187,7 +193,7 @@ function toggle_options(button) {
     // Set the position of the options window relative to the button
     if (isFooterIcon) {
         // For buttons in the footer, position the options window higher than the button
-        optionsWindow.style.top = (buttonRect.top - optionsWindow.offsetHeight - 190 + window.scrollY) + 'px';
+        optionsWindow.style.top = (buttonRect.top - optionsWindow.offsetHeight - 220 + window.scrollY) + 'px';
     } else {
         // For buttons in the header or elsewhere, position the options window below the button
         optionsWindow.style.top = (buttonRect.bottom + window.scrollY) + 'px';
@@ -198,9 +204,11 @@ function toggle_options(button) {
     // Toggle the visibility of the options window
     if (optionsWindow.style.display === 'none' || optionsWindow.style.display === '') {
         optionsWindow.style.display = 'block';
+        // begin text-to-speech
         speak();
     } else {
         optionsWindow.style.display = 'none';
+        // prematurely end texto-to-speech
         synth.cancel();
     }
 

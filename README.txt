@@ -30,7 +30,11 @@ La mayoría de comandos usan una gramática, sin embargo hay unos comandos espec
 que no la utilizan. Para empezar a reconocer un comando se debe pulsar en el botón cuyo icóno es una persona
 hablando. Dicho botón se pondrá rojo y entonces el usuario deberá decir en voz alta el comando. 
 Si funciona el ejecutará y el botón volverá a su color original. Si el comando no es
-el correcto el botón volverá a su color original y el estado quedará igual.
+el correcto el botón volverá a su color original y el estado quedará igual. 
+
+En la página del login hay dos comandos especiales para dictar el nombre de usuario y la contraseña. 
+Diciendo usuario ...todo lo que se diga despues quedará guardado en el campo de usuario.
+Lo mismo pasa al decir contraseña ... .
 
 * Si se ejecuta desde chromium en Linux se debera usar los siguientes comandos para que funcione el SpeechSynthesis:
 sudo apt-get install espeak;
