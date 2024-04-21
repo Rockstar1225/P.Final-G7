@@ -48,16 +48,22 @@ funcionalidades:
 
 
 
-Funcionalidades addicionales:
+Funcionalidades adicionales:
 
-    Gestos:
+    Gestos básicos:
     Los gestos que tenemos en el movil son los siguientes.
     1. ir a carrito: se hace moviendo el movil hacia adelante.
     2. ir a perfil: se hace moviendo el movil hacia la izquierda.
     3. ir a busqueda: se hace moviendo el movil hacia la derecha.
     3. ir a categorias: se hace moviendo el movil hacia atras.
 
+    Gestos extra:
+    Para realizar los pagos, se puede realizar mediante un input y un botón o girando el móvil a la derecha.
+    En caso de querer volver al carro, solo basta con girar a la izquierda. Si se ha aceptado el encargo, hay también
+    opción de botón o girar a la izquierda. Ambos te devuelven al menú principal.
 
+    *ADVERTENCIA: En caso de fallas en la realización de movimientos, se recomienda refrescar la página. Esto es debido a
+    problemas de la captación de las coordenadas alpha, beta y gamma.
 
     Comandos de voz y texto a voz con Web Speech API (SpeechGrammar y SpeechSynthesis respectivamente)*:
     El primer paso para usar los comandos de voz es visualizar la lista de comandos. 
