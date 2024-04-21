@@ -58,7 +58,7 @@ class shopping_cart {
     socket.emit("getProd",nombre);
     socket.on("retProd",(prod) => {
         if (prod != {}){
-            this.shopping_cart.cart.push(prod);
+            this.shopping_cart.cart.push(prod[0]);
             this.saveData();
         } else {
             console.log("No se encontró producto para añadir a faboritos.");

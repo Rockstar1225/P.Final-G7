@@ -38,17 +38,17 @@ class fabourites {
   loadData() { 
     let ruta = this.ruta+this.user+".json";
     let data = fs.readFileSync(ruta); 
+    console.log("Datos de faboritos",JSON.parse(data));
     this.fabs_data = JSON.parse(data);
   }
 
   // Añadir un nuevo producto a favoritos
-  addProd(nombre) {
-    console.log("Usuario para añadir: "+this.user); 
+  addProd(nombre) { 
     socket.emit("getProd",nombre);
     socket.on("retProd",(prod) => {
         console.log("Producto recibido",prod);
         if (prod){
-            this.fabs_data.fabs.push(prod);
+            this.fabs_data.fabs.push(prod[0]);
             this.saveData();   
         } else {
             console.log("No se encontró producto para añadir a faboritos.");
@@ -58,6 +58,7 @@ class fabourites {
 
   // Quitar un producto de favoritos
   remProd(name) {    
+    
     let index = this.fabs_data.fabs.findIndex((prod) => prod["name"] === name);
     if (index === -1){
         console.log("No se encontró elemento en favoritos para eliminar.");

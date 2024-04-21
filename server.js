@@ -79,14 +79,14 @@ io.on('connection', (socket) => {
   // cambiar de usuario
   socket.on("fabSwitchUser",function(user){
     fabs_handler.setUser(user);
-    console.log("Usuario "+user+" cambiado fabs!!") 
+    
   })
 
   // añadir un producto
   socket.on("fabAddProd",function(name){
     fabs_handler.addProd(name);
     console.log("Producto añadido en fabs!!");
-    console.log("Usuario insertado: "+fabs_handler.user);
+    
   })
 
   // quitar un producto
@@ -106,7 +106,7 @@ io.on('connection', (socket) => {
   // Cambiar de usuario gestionado
   socket.on("shoppingCartSwitchUser",function(user){
     shopping_cart_handler.setUser(user);
-    console.log("Usuario "+user+" cambiado carrito!!");
+    
   })
 
   // Añadir un producto

@@ -157,6 +157,8 @@ function displayProduct(element){
    socket.on("retCenterGetCart",(data) => {
 
     let data_prods = Array.from(data,(up) => {return JSON.stringify(up.prod)});
+    console.log("Data:",data_prods);
+    console.log("Elemento: "+JSON.stringify(element));
 
     if (data_prods.includes(JSON.stringify(element))){
        add_cart_img.style.backgroundColor = "red";
