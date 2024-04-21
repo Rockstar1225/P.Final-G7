@@ -13,8 +13,10 @@ Para ejecutar el código se debe realizar los siguientes pasos:
 package-lock.json y package.json.
 3. Usando una terminal acceder al directorio del proyecto.
 4. Inicializar el servidor con el comando: "node server.js".
-5. Con google chrome en el ordenador o un móvil enchufado al ordenador acceder a: "http://localhost:3000/client/index.html".
+5. Con google chrome en el ordenador o un móvil enchufado al ordenador acceder a: "http://localhost:3000/client/index.html"(página de cliente).
 6. A continuación aparecera la pantalla principal de la aplicación.
+7. Si se desea acceder al panel de control (interfaz del lado del servidor), se accederá desde un dispositivo a: "http://localhost:3000/index.html".
+8. A continuación serán mostrados 3 apartados para visualizar los productos en faboritos, los del carrito y los usuarios logeados en la plataforma.
 
 funcionalidades:
     añadir*:
@@ -22,10 +24,13 @@ funcionalidades:
         dando click al botón de más informaciòn y luego cliquear el icóno del carrito.
 
     eliminar*:
-        p
+        Una vez que un producto ha sido añadido al carrito o a la lista de favoritos
+        de un usuario logeado, Los botones de añadir producto al carrito o a favoritos
+        se reemplazan por los de eliminar (carácterísticos por llevar el fondo rojo).
+
     Marcar como Favorito*: 
-        Esta función se realiza buscando un producto, y luego 
-        dando click al botón de más informaciòn y luego cliquear el icóno de favoritos.
+        Esta función se realiza buscando un producto, dando click al botón de más informaciòn 
+        y luego cliquear el icóno de favoritos (carácterístico por su fondo amarillo).
 
     Ordenar*:
         Para Ordenar los productos el usuario tiene que dirigirse a la página de busqueda.
@@ -51,9 +56,6 @@ Funcionalidades addicionales:
     2. ir a perfil: se hace moviendo el movil hacia la izquierda.
     3. ir a busqueda: se hace moviendo el movil hacia la derecha.
     3. ir a categorias: se hace moviendo el movil hacia atras.
-
-
-
 
 
 
@@ -84,4 +86,63 @@ Funcionalidades addicionales:
     de busqueda usando el comando: "ir a busqueda". Ahí el usuario puede buscar un
     producto usando el buscador y la lupa. Cabe destacar que solo se devolverán
     productos que tengan el mismo nombre que el campo de busqueda.  
+
+
+
+    Gestor de archivos incorporado:
+    Se ha desarrollado para esta práctica un sistema de gestión de lista de faboritos y carrito
+    independiente a cada usuario, el cual almacena los productos añadidos en ficheros. Se organiza de la siguiente manera:
+        
+        - Carpeta "/cart": Localización de todos los archivos correspondientes a los usuarios logeados.
+            Estos contienen los productos añadidos a faboritos por su correspondiente usuario en la interfaz.
+            Se crea un fichero llamado ".json" al principio de todo, el cual representa el usuario no logueado.
+            De ésta manera, también se almacenarán los productos agregados al carrito de un usuario que no esté logueado o
+            registrado. Se puede identificar qué usuario a guardado qué productos según el nombre del archivo ".json" almacenado.
+            Ej.: El fichero "Adri.json" almacena los productos del usuario "Adri".
+
+        - Carpeta "/fabs": Ubicación de todos los ficheros que registran los productos añadidos a faboritos por los usuarios logueados.
+            También incluye un fichero ".json" con el nombre vacío para incluir al usuario no registrado en la plataforma.
+            Se utilizará el mismo sistema de asociación que en la carpeta anterior para identificar qué productos han sido añadidos por
+            qué usuarios al carrito de la compra.
+    
+
+
+    Panel de control:
+    Hemos desarrollado del lado del servidor, un panel de mando desde el que se puede visualizar que productos han sido añadidos a faboritos,
+    cuales han sido añadidos al carrito de la compra y los usuarios existentes dentro de la plataforma. Esto es representado a través de un módulo
+    en Node.js llamado "command_center.js". Es reutilizado por el servidor para la gestión de esta interfaz. Sus secciones serán las siguientes:
+        
+        - Favoritos: Esta sección se rellena automáticamente con una tabla que periodicamente, comprueba los productos que se han añadido
+        a faboritos para todos los usuarios existentes en la plataforma. La información se presenta con el formato: "Usuario-Producto".
+
+        - Carrito: Dicha sección ilustra los productos que han sido añadidos al carrito de la compra en la interfaz por todos los usuarios.
+        Los datos se presentan con el mismo formato que la sección anterior dinámicamente.
+
+        - Usuarios: Sección que recopila los usuarios logueados en la plataforma o interfaz. Cabe a resaltar que aparece una fila en la tabla
+        con el nombre vacío debido al usuario sin nombre que representa a los que no se han logueado. Dichos usuarios se verán representados por
+        el usuario en blanco, por defecto al entrar en la plataforma.
+    
+
+    Gestión de Favorito:
+    La gestión de las listas de faboritos de cada uno de los usuarios implementada a través de ficheros ".json" es utilizada por medio de un módulo
+    de node.js que corresponde al archivo "fabs.js". Este módulo del proyecto es importado y manejado por el servidor según los eventos emitidos por
+    los usuarios en la interfaz.
+
+    Gestión de Carrito:
+    La gestión de carritos de la compra con los productos añadidos por los usuarios, seguirá la misma implementación que la gestión anterior (ficheros ".json").
+    Aunque para ésta, se utilizará un módulo diferente de node.js asociado al archivo "shopping_cart.js". Este módulo, al igual que el anterior,
+    será manipulado por el servidor según se haga falta por el tratamiento de eventos de los clientes.
+
+    Base de datos:
+    Se ha incluido la implementación de una base de datos, con el propósito de almacenar los productos disponibles en el almacén de la tienda deportiva.
+    Al igual que las gestiones anteriores, la de la base de datos se hace a través de otro módulo separado con el nombre "store.js". Se importará en el
+    servidor y manejará según así se requiera.
+
+    Estructura modular:
+    Se ha optado por implementar una estructura modular por la parte del servidor o backend de la aplicación. Esto se ha diseñado así para ser
+    altamente reutilizable y escalable en futuras actualizaciones.
+
+    Diseño de Peticiones:
+    Cada una de las interacciones de los usuarios en la interfaz se ve representada por un evento en el lado del servidor. Esto se ha diseñado
+    de esta manera para que sea altamente manejable y cada acción en la interfaz tenga su consecuencia de gestión por parte del servidor central.
 
