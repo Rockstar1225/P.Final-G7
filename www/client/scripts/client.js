@@ -31,6 +31,7 @@ function setUser(){
 
     // mandar al servicio de faboritos que se cree el usuario en favoritos
     if (checkUser() === true){
+      console.log("User local: "+global_user);
       socket.emit("fabSwitchUser",global_user);
       socket.emit("shoppingCartSwitchUser",global_user);
       socket.emit("shoppingCartGetProds", shopping_cart);

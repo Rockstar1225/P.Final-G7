@@ -67,6 +67,7 @@ class command_center{
     }
 
     getFabProds(){
+        this.updateUsers();
         this.list_fab_prods = []; 
         for (const user of this.list_users_fabs) {
             this.fabs_handler.setUser(user); 
@@ -77,6 +78,7 @@ class command_center{
     }
 
     getCartProds(){
+        this.updateUsers();
         this.list_cart_prods = [];
         for (const user of this.list_users_cart) {
             this.cart_handler.setUser(user);
