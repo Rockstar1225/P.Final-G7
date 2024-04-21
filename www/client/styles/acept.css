@@ -1,0 +1,20 @@
+#acept_p, #aceptado, #no_touch{
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    background-color: #7CC3B6;
+    border: 2px solid black;
+    margin-left: 25%;
+    margin-right: 25%;
+    margin-top: 5%;
+}
+#acept_p, #aceptado, #no_touch > p{
+    font-size: large;
+}
+
+.b_accept{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: large;
+    padding: 1px;
+    margin: 1px;
+    background-color:rgb(6, 161, 6);
+}
