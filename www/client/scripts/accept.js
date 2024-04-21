@@ -31,6 +31,7 @@ function endPedido(){ //Termina el pedido
   document.getElementById("acept_p").style.display = "none";
   document.getElementById("aceptado").style.display = "block";
   paso1 = false;
+  alert("Gracias por la compra");
   }
 
   function backtoMenu(){ //Devuelve al usuario al menu
@@ -39,7 +40,6 @@ function endPedido(){ //Termina el pedido
 
   function mov_ending(event){ //Para alcanzar las dos funciones anteriores moviendo el móvil
     angulo_actual = {alpha: event.alpha, beta: event.beta, gamma: event.gamma};
-    console.log(angulo_actual.gamma);
     if(paso1){ //endPedido
         if (angulo_actual.gamma <= -60){ window.location.href = "./client_carrito.html"; }
         if (angulo_actual.gamma >= 60){ endPedido();}

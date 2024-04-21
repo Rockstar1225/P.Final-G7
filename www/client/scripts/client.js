@@ -1,11 +1,11 @@
 let socket = io("http://localhost:3000");
-let sesion;
+let sesion; //Si es 1, hay un inicio de sesión. Si es 0, hace falta un login
 let shopping_cart;
 getUser();
 
 
 //-----MENÚS AFECTADOS POR EL INICIO DE SESIÓN (Si la variable sesion es 0 mandan al loggin).---------------
-function logged(){
+function logged(){ //Perfil
     if (sesion == 0){ 
         window.location.href = "./client_login.html"; 
     } else{
@@ -13,7 +13,7 @@ function logged(){
     }
 }
 
-function chart_in(){
+function chart_in(){//Carrito
     if (sesion == 0){
         window.location.href = "./client_login.html"; 
     } else{
@@ -22,7 +22,7 @@ function chart_in(){
   }
 
 
-//-----FUNCIONES PARA ACTIVAR EL USUARIO----------------------------
+//-----FUNCIONES PARA GESTIÓN DE USUARIO (set -> lo activa) (get-> lo recoge)----------------------------
 
 function setUser(){
     let user = document.querySelector("#init_user").value; 
@@ -39,7 +39,7 @@ function getUser(){
   socket.on('retShoppingCartGetUser',(resultado) =>{
     console.log(resultado);
       if (resultado != ""){
-        sesion = 1;
+        sesion = 1; 
       }
       else{ sesion = 0;}
   });
@@ -49,7 +49,8 @@ function getUser(){
 
 
 //-----SECCIÓN AJUSTES DE USUARIO/ FILTROS DE BÚSQUEDA------------
-function init_settings(){
+//Para los filtros y ajustes escondidos. Aquí se configuran sus posiciones y los botones > que las cambian
+function init_settings(){ //Posicion inicial de los ajustes de perfil
   document.getElementById("user_settings").style.display = "none";
   document.getElementById("user_open").style.transform = "none";
   document.getElementById("not_settings").style.display = "none";
@@ -58,13 +59,13 @@ function init_settings(){
   document.getElementById("fav_open").style.transform = "none";
 }
 
-function init_filt(){
+function init_filt(){//Posicion inicial filtros de búsqueda
   document.getElementById("filt").style.display = "none";
   document.getElementById("b_filt").style.transform = "none";
 }
 
 
-function settingsCat(id){
+function settingsCat(id){ //Con el id de la sección cambiaas su poción y la de su botón correspondiente
     let bot = document.getElementById(id);
     let submenu;
     if (id == "user_open"){
@@ -92,8 +93,8 @@ function settingsCat(id){
 }
 
 
-
-function acceptPedido(){
+//--SECCIÓN ACEPTAR EL PEDIDO DESDE EL CARRITO
+function acceptPedido(){ //Si hay usuario y productos, da inicio a la compra.
   if (sesion == 0){
     alert("No hay usuario indicado");
   }
