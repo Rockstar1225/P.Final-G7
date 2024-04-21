@@ -1,4 +1,4 @@
-const socket = io();
+let socket = io();
 
 
 //------------Eventos de conexión------------------

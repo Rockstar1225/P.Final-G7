@@ -1,4 +1,4 @@
-const socket = io();
+let socket = io();
 let sesion;
 let global_user = "";
 let shopping_cart;
