@@ -54,4 +54,9 @@
 }
 
 
-
+@media only screen and (max-width: 1037px){
+    #list{
+        max-height: 50%;
+        margin-top: -10px;
+    }
+}
